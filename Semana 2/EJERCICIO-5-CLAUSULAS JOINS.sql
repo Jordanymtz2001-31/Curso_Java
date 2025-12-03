@@ -1,0 +1,128 @@
+--CLAUSA JOINS
+CREATE TABLE PADRE(
+    ID_PADRE NUMBER,
+    NOMBRE NVARCHAR2(50),
+    APELLIDO NVARCHAR2(50),
+    EDAD NUMBER,
+    TRABAJO NVARCHAR2(50),
+    CONSTRAINT PADRE_PK PRIMARY KEY(ID_PADRE)
+);
+DROP TABLE PADRE;
+
+INSERT INTO PADRE VALUES (1, 'Carlos', 'González', 45, 'Ingeniero Civil');
+INSERT INTO PADRE VALUES (2, 'María', 'López', 38, NULL);
+INSERT INTO PADRE VALUES (3, 'Roberto', 'Martínez', 52, 'Médico');
+INSERT INTO PADRE VALUES (4, 'Ana', 'Ramírez', 41, 'Contadora');
+INSERT INTO PADRE VALUES (5, 'Javier', 'Hernández', 47, 'Arquitecto');
+INSERT INTO PADRE VALUES (6, 'Laura', 'Díaz', 0, 'Profesora');
+INSERT INTO PADRE VALUES (7, 'Miguel', 'Castillo', 55, 'Empresario');
+INSERT INTO PADRE VALUES (8, 'Sofia', 'Vargas', 42, NULL);
+INSERT INTO PADRE VALUES (9, 'Fernando', 'Silva', 0, 'Abogado');
+INSERT INTO PADRE VALUES (10, 'Patricia', 'Rojas', 49, 'Diseñadora');
+INSERT INTO PADRE VALUES (11, 'Ricardo', 'Mendoza', 44, 'Ingeniero');
+INSERT INTO PADRE VALUES (12, 'Gabriela', 'Ortega', 39, NULL);
+INSERT INTO PADRE VALUES (13, 'Alejandro', 'Cruz', 51, 'Consultor');
+INSERT INTO PADRE VALUES (14, 'Carmen', 'Reyes', 46, 'Enfermera');
+INSERT INTO PADRE VALUES (15, 'Daniel', 'Flores', 0, 'Programador');
+INSERT INTO PADRE VALUES (16, 'Isabel', 'Morales', 43, 'Psicóloga');
+INSERT INTO PADRE VALUES (17, 'Luis', 'Gutiérrez', 48, NULL);
+INSERT INTO PADRE VALUES (18, 'Elena', 'Santos', 40, 'Chef');
+INSERT INTO PADRE VALUES (19, 'Juan', 'Torres', 53, 'Periodista');
+INSERT INTO PADRE VALUES (20, 'Adriana', 'Navarro', 0, 'Marketing');
+
+SELECT * FROM PADRE;
+
+--DECLARACION DE LA TABLA HIJO
+CREATE TABLE HIJO(
+    ID_HIJO NVARCHAR2(50),
+    NOMBRE NVARCHAR2(50),
+    APELLIDO NVARCHAR2(50),
+    EDAD NUMBER,
+    HOBBIE NVARCHAR2(50),
+    PADRE_ID NUMBER,
+    CONSTRAINT HIJO_PK PRIMARY KEY(ID_HIJO),
+    CONSTRAINT PADR_FK FOREIGN KEY(PADRE_ID) REFERENCES PADRE(ID_PADRE)
+);
+DROP TABLE HIJO;
+
+INSERT INTO HIJO VALUES (1, 'Diego', 'González', 15, 'Fútbol', 1);
+INSERT INTO HIJO VALUES (2, 'Valeria', 'López', 12, 'Pintura', 2);
+INSERT INTO HIJO VALUES (3, 'Andrés', 'Martínez', 17, NULL, 3);
+INSERT INTO HIJO VALUES (4, 'Camila', 'Ramírez', 14, 'Natación', 4);
+INSERT INTO HIJO VALUES (5, 'Santiago', 'Hernández', 16, 'Videojuegos', 5);
+INSERT INTO HIJO VALUES (6, 'Renata', 'Díaz', 0, 'Danza', 6);
+INSERT INTO HIJO VALUES (7, 'Mateo', 'Castillo', 18, 'Música', 7);
+INSERT INTO HIJO VALUES (8, 'Lucía', 'Vargas', 11, NULL, 8);
+INSERT INTO HIJO VALUES (9, 'Julián', 'Silva', 13, 'Ajedrez', 9);
+INSERT INTO HIJO VALUES (10, 'Ximena', 'Rojas', 15, 'Lectura', 10);
+INSERT INTO HIJO VALUES (11, 'Emilio', 'Mendoza', 0, 'Fútbol', 11);
+INSERT INTO HIJO VALUES (12, 'Danna', 'Ortega', 16, NULL, 12);
+INSERT INTO HIJO VALUES (13, 'Sebastián', 'Cruz', 14, 'Béisbol', 13);
+INSERT INTO HIJO VALUES (14, 'Mariana', 'Reyes', 17, 'Pintura', 14);
+INSERT INTO HIJO VALUES (15, 'Alex', 'Flores', 0, 'Programación', 15);
+INSERT INTO HIJO VALUES (16, 'Daniela', 'Morales', 12, 'Canto', 16);
+INSERT INTO HIJO VALUES (17, 'David', 'Gutiérrez', 15, NULL, 17);
+INSERT INTO HIJO VALUES (18, 'Paula', 'Santos', 13, 'Dibujo', 18);
+INSERT INTO HIJO VALUES (19, 'Jorge', 'Torres', 16, 'Ciclismo', 19);
+INSERT INTO HIJO VALUES (20, 'Andrea', 'Navarro', 0, 'Fotografía', 20);
+INSERT INTO HIJO VALUES (21, 'Carlos', 'Pérez', 10, 'Videojuegos', NULL);
+INSERT INTO HIJO VALUES (22, 'Ana', 'Gómez', 9, 'Baile', NULL);
+INSERT INTO HIJO VALUES (23, 'Pedro', 'Ruiz', 11, 'Natación', NULL);
+INSERT INTO HIJO VALUES (24, 'Laura', 'Herrera', 8, NULL, NULL);
+INSERT INTO HIJO VALUES (25, 'José', 'Castro', 0, 'Fútbol', NULL);
+
+SELECT *FROM HIJO;
+
+--INER JOIN
+SELECT * FROM HIJO H
+INNER JOIN PADRE P
+ON H.PADRE_ID = P.ID_PADRE;
+
+--LEFT JOIN
+SELECT * FROM HIJO H
+LEFT JOIN PADRE P
+ON H.PADRE_ID = P.ID_PADRE;
+
+--LEFT JOIN SIN CONINCICENCIAS
+SELECT * FROM HIJO H
+LEFT JOIN PADRE P
+ON H.PADRE_ID = P.ID_PADRE
+WHERE H.PADRE_ID IS NULL;
+
+--RIGHT JOIN
+SELECT * FROM HIJO H
+RIGHT JOIN PADRE P
+ON H.PADRE_ID = P.ID_PADRE;
+
+--RIGHT JOIN SIN CONINCICENCIAS
+SELECT * FROM HIJO H
+RIGHT JOIN PADRE P
+ON H.PADRE_ID = P.ID_PADRE
+WHERE H.PADRE_ID IS NULL;
+
+--FULL JOIN
+SELECT * FROM HIJO H
+FULL JOIN PADRE P
+ON H.PADRE_ID = P.ID_PADRE;
+
+--FULL JOIN SIN CONCIDENCIAS
+SELECT * FROM HIJO H
+FULL JOIN PADRE P
+ON H.PADRE_ID = P.ID_PADRE
+WHERE H.PADRE_ID IS NULL;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
