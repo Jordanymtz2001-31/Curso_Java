@@ -1,0 +1,5 @@
+package com.mx.PadreHijo.Service;
+
+public interface HijoService {
+
+}

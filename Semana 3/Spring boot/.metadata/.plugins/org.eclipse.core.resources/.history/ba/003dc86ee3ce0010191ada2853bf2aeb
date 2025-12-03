@@ -1,0 +1,12 @@
+package com.mx.Empleado.Service;
+
+@Service //Indica que esta clase es un servicio de Spring donde se implementan las operaciones de negocio
+		//También permite la inyección de dependencias en otras clases
+public class ImplementacionEmpleado {
+	
+	@Autowired //Inyecta automáticamente la dependencia del repositorio de Empleado de DAO
+	private EmpleadoDao Dao;
+	//implementando el patron de inversion de control y mediante la tecnica de inyeccion de dependencias
+	//donde el contenedor de spring se encarga de crear e inyectar la dependencia requerida en tiempo de ejecucion
+
+}

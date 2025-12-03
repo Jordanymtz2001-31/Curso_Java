@@ -1,0 +1,6 @@
+spring.application.name=Empleado
+
+#Puerto en el que se subira mi aplicacion 
+serve.port = 8001
+
+#configuracion 

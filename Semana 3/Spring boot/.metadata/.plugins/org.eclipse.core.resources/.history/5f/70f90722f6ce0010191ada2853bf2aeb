@@ -1,0 +1,5 @@
+package com.mx.Cine.Dao;
+
+public interface CineDao {
+
+}

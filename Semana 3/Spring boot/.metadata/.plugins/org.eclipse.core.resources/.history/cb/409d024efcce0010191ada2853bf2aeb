@@ -1,0 +1,60 @@
+package com.mx.Cine.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mx.Cine.Dominio.Cine;
+import com.mx.Cine.Service.CineServicio;
+
+@RestController //Antacion para indicar que es un controlador REST
+@RequestMapping(path="/cines") //Mapea las solicitudes HTTP a /cines a este controlador
+@CrossOrigin //Permite solicitudes CORS desde cualquier origen
+
+public class CineController {
+	
+	//Inyectamos la dependencia del servicio de Cine
+	@Autowired
+	private CineServicio service;
+	
+	//Listar cines
+	@GetMapping(path = "/listar")
+	public List<Cine> listar() {
+		return service.leerCines();
+	}
+	
+	//Guardar cine
+	@PostMapping(path = "/guardar")
+	public void guardar(@RequestBody Cine cine) {
+		service.crearCine(cine);
+	}
+	
+	//Editar cine
+	@PutMapping(path = "/editar")
+	public void editar(@RequestBody Cine cine) {
+		service.actualizarCine(cine);
+	}
+	
+	//Buscar cine
+	@PostMapping(path = "/buscar")
+	public Cine buscar(@RequestBody Cine idCine) {
+		return service.buscarCine(idCine);
+	}
+	
+	//Eliminar cine
+	@DeleteMapping(path = "/eliminar")
+	public void eliminar(@RequestBody Cine idCine) {
+		service.eliminarCine(idCine);
+	}
+
+}

@@ -1,0 +1,20 @@
+package com.mx.CineFuncion.Dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.mx.CineFuncion.Dominio.Cine;
+
+@Repository //Esto indica que es un componente de acceso a datos
+public interface CineDao extends JpaRepository<Cine, Integer> {
+	// Con JpaRespository ya tenemos los métodos básicos para CRUD
+	
+	//METODOS PERSONALIZADOS DE JPA REPOSITORY
+	
+	//Método para verificar si existe un cine por nombre y ciudad, ignorando mayúsculas y minúsculas
+	public boolean existsByNombreAndCiudadAllIgnoreCase(Number idFuncion, String nombre, String ciudad);
+		
+	//Método para buscar un padre por nombre
+	public Cine findByNombre(String nombre);
+
+}

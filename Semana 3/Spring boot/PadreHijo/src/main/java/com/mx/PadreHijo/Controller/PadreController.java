@@ -1,0 +1,100 @@
+package com.mx.PadreHijo.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mx.PadreHijo.Dominio.Padre;
+import com.mx.PadreHijo.Service.PadreImplementacion;
+
+@RestController //Indica que es un controlador REST
+@CrossOrigin //Permite solicitudes desde cualquier origen
+@RequestMapping("padre") //Ruta base para las solicitudes relacionadas con padres
+public class PadreController {
+	
+	@Autowired //Inyección de dependencia
+	private PadreImplementacion padreService;
+	
+	@GetMapping("/listar")
+	public ResponseEntity<?> listarPadres() {
+		//Guardamos la lista en otra lista para validar
+		List<Padre> padres = padreService.listarP();
+		//Validamos que el servicio devuelva la lista de padres
+		if(padres.isEmpty()) { //Si la lista está vacía
+			return ResponseEntity.noContent().build(); //Devuelve un estado 204 No Content
+		} else {
+			return ResponseEntity.ok(padres); //Devuelve un estado 200 OK con la lista de padres
+		}
+	}
+	
+	@PostMapping("/guardar")
+	public ResponseEntity<String> guardarPadre(@RequestBody Padre padre) {
+		boolean existe = padreService.existePadre(padre.getNombre(), padre.getApellido());
+		
+		if(existe) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("El padre ya existe");
+		} else {
+			padreService.guardarP(padre);
+			return ResponseEntity.ok("Padre " + padre.getNombre() + " guardado correctamente");
+		}
+	}
+	
+	@PutMapping("/editar")
+	public ResponseEntity<String> editarPadre(@RequestBody Padre padre) {
+		//Primero buscamos si el padre existe
+		Padre padreExistente = padreService.buscarP(padre.getIdPadre());
+		
+		if(padreExistente == null) { //Si no existe o no lo encuentra
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El padre no existe");
+		} else {
+			padreService.editarP(padre);
+			return ResponseEntity.ok("Padre " + padre.getNombre() + " editado correctamente");
+		}
+	}
+	
+	//Buscar padre por id
+	@GetMapping("/buscar/{idPadre}")
+	//Usamos PathVariable para capturar el id del padre desde la URL
+	public ResponseEntity<?> buscarPadre(@PathVariable Integer idPadre) {
+		Padre padre = padreService.buscarP(idPadre);
+		
+		if(padre == null) { //Si no existe o no lo encuentra
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El padre no existe");
+		} else {
+			return ResponseEntity.ok(padre);
+		}
+	}
+	
+	@PostMapping("/buscarPorNombre")
+	//Usamos RequestParam para capturar el nombre del padre desde los parámetros de la solicitud
+	public ResponseEntity<?> buscarPadrePorNombre(@RequestParam String nombre) {
+		Padre padreEncontrado = padreService.buscarPorNombre(nombre);
+		return ResponseEntity.ok(padreEncontrado);
+	}
+	
+	@DeleteMapping("/eliminar/{idPadre}")
+	public ResponseEntity<String> eliminarPadre(@PathVariable Integer idPadre) {
+		//Primero buscamos si el padre existe
+		Padre padreExistente = padreService.buscarP(idPadre);
+		
+		if(padreExistente == null) { //Si no existe o no lo encuentra
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El padre no existe");
+		} else {
+			padreService.eliminarP(idPadre);
+			return ResponseEntity.ok("Padre eliminado correctamente");
+		}
+	}
+		
+}

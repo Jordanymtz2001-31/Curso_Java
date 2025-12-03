@@ -1,0 +1,55 @@
+package com.mx.CineFuncion.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mx.CineFuncion.Dao.FuncionDao;
+import com.mx.CineFuncion.Dominio.Funcion;
+
+@Service //Indica que es un componente de servicio
+public class FuncionImplementacion implements FuncionServicio {
+	
+	@Autowired //Inyección de dependencia
+	private FuncionDao funcionDao;
+
+	@Override
+	public List<Funcion> listarF() {
+		return  funcionDao.findAll();
+	}
+
+	@Override
+	public void guardarF(Funcion funcion) {
+		funcionDao.save(funcion);
+		
+	}
+
+	@Override
+	public void editarF(Funcion funcion) {
+		funcionDao.save(funcion);
+		
+	}
+
+	@Override
+	public void eliminarF(Integer idFuncion) {
+		funcionDao.deleteById(idFuncion);
+		
+	}
+
+	@Override
+	public Funcion buscarF(Integer idFuncion) {
+		return funcionDao.findById(idFuncion).orElse(null);
+	}
+	
+	//Metodo personalizado para buscar funciones por película
+	public Funcion buscarPorPelicula(String pelicula) {
+		return funcionDao.findByPelicula(pelicula);
+	}
+	
+	//Método personalizado para verificar si existe una función por película y horario
+	public boolean existeFuncion(String pelicula, String horario) {
+		return funcionDao.existsByPeliculaAndHorarioAllIgnoreCase(pelicula, horario);
+	}
+
+}

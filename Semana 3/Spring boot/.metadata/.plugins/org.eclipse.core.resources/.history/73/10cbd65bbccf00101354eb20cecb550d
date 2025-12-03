@@ -1,0 +1,99 @@
+package com.mx.CineFuncion.Dominio;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity // Indica que esta clase es una entidad de JPA
+@Table// Mapea esta entidad a la tabla "Funcion" en la base de datos
+public class Funcion {
+	
+	@Id // Definimos la llave primaria
+	private Integer idFuncion;
+	private String pelicula;
+	private Integer duracion;
+	private String horarios;
+	
+	@ManyToOne(fetch = FetchType.EAGER) // Con EAGER cargamos la información del cine junto con la función
+	@JoinColumn(name = "ID_CINE") // Especificamos la columna de la llave foránea
+	private Integer idCine; // Llave foránea para relacionar con Cine
+	private Integer clasificacion;
+	
+	// Constructores
+	public Funcion() {
+		super();
+	}
+	
+	public Funcion(Integer idFuncion, String pelicula, Integer duracion, String horarios, Integer idCine, Integer clasificacion) {
+		super();
+		this.idFuncion = idFuncion;
+		this.pelicula = pelicula;
+		this.duracion = duracion;
+		this.horarios = horarios;
+		this.idCine = idCine;
+		this.clasificacion = clasificacion;
+	}
+	
+	// Getters y Setters
+
+
+	public Integer getIdFuncion() {
+		return idFuncion;
+	}
+
+	public void setIdFuncion(Integer idFuncion) {
+		this.idFuncion = idFuncion;
+	}
+
+	public String getPelicula() {
+		return pelicula;
+	}
+
+	public void setPelicula(String pelicula) {
+		this.pelicula = pelicula;
+	}
+
+	public Integer getDuracion() {
+		return duracion;
+	}
+
+	public void setDuracion(Integer duracion) {
+		this.duracion = duracion;
+	}
+
+	public String getHorarios() {
+		return horarios;
+	}
+
+	public void setHorarios(String horarios) {
+		this.horarios = horarios;
+	}
+
+	public Integer getIdCine() {
+		return idCine;
+	}
+
+	public void setIdCine(Integer idCine) {
+		this.idCine = idCine;
+	}
+
+	public Integer getClasificacion() {
+		return clasificacion;
+	}
+
+	public void setClasificacion(Integer clasificacion) {
+		this.clasificacion = clasificacion;
+	}
+
+	// toString
+	@Override
+	public String toString() {
+		return "Funcion [idFuncion=" + idFuncion + ", pelicula=" + pelicula + ", duracion=" + duracion + ", horarios="
+				+ horarios + ", idCine=" + idCine + ", clasificacion=" + clasificacion + "]";
+	}
+	
+
+}

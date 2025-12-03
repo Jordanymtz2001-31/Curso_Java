@@ -1,0 +1,47 @@
+package com.mx.PadreHijo.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.data.autoconfigure.web.DataWebProperties.Sort;
+import org.springframework.stereotype.Service;
+
+import com.mx.PadreHijo.Dao.PadreDao;
+import com.mx.PadreHijo.Dominio.Padre;
+
+@Service //Indica que es un componente de servicio
+public class PadreImplementacion implements PadreService {
+	
+	@Autowired //Inyección de dependencia
+	private PadreDao padreDao;
+
+	@Override
+	public List<Padre> listarP() {
+		return padreDao.findAll(Sort.by(Sort.Direction.ASC, "idPadre"));
+	}
+
+	@Override
+	public void guardarP(Padre padre) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void editarP(Padre padre) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eliminarP(Integer idPadre) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Padre buscarP(Integer idPadre) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

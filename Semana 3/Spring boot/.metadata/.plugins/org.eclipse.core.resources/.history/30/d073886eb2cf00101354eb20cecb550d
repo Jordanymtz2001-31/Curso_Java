@@ -1,0 +1,5 @@
+package com.mx.AlumnoMateria.Dominio;
+
+public class Alumno {
+
+}

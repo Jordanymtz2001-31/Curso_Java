@@ -1,0 +1,23 @@
+package com.mx.Empleado.Dominio;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity // Indica que esta clase es una entidad de JPA
+		// Mapea la clase a una tabla en la base de datos
+@Table(name = "EMPLEADO") // Nombre de la tabla en la base de datos
+public class Empleado {
+	
+	@Id
+	@Column(name = "ID_EMPLEADO", columnDefinition = "NUMBER") // Mapea el campo a la columna ID_EMPLEADO
+	private int idEmpleado; // Identificador único del empleado
+	private String nombre; // Nombre del empleado
+	private String apellido; // Apellido del empleado
+	private int edad; // Edad del empleado
+	private String puesto; // Puesto del empleado
+	private String departamento; // Departamento del empleado
+	
+
+}

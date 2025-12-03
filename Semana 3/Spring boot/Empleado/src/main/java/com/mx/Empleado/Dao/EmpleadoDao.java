@@ -1,0 +1,15 @@
+package com.mx.Empleado.Dao;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.mx.Empleado.Dominio.Empleado;
+
+@Repository
+public interface EmpleadoDao extends CrudRepository<Empleado, Integer> {
+	
+	//Esta es la capa de acceso a datos (DAO) para la entidad Empleado.
+	//Con esta interfaz, Spring Data JPA proporcionará automáticamente
+	//implementaciones CRUD básicas para la entidad Empleado.
+
+}

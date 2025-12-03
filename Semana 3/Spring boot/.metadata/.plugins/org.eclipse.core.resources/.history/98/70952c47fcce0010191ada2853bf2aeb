@@ -1,0 +1,51 @@
+package com.mx.Cine.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mx.Cine.Dao.CineDao;
+import com.mx.Cine.Dominio.Cine;
+
+//Indicamos que esta clase es un servicio(servidor)
+@Service
+public class ImplementacionCine implements CineServicio{
+	
+	@Autowired
+	private CineDao cineDao;
+
+	//Guardar un cine
+	@Override
+	public void crearCine(Cine cine) {
+		cineDao.save(cine);
+		
+	}
+	
+	//Leer todos los cines
+	@Override
+	public List<Cine> leerCines() {
+		return (List<Cine>) cineDao.findAll();
+	}
+	
+	//Actualizar un cine
+	@Override
+	public void actualizarCine(Cine cine) {
+		cineDao.save(cine);
+		
+	}
+	
+	//Eliminar un cine
+	@Override
+	public void eliminarCine(Cine idCine) {
+		cineDao.delete(idCine);
+		
+	}
+	
+	//Buscar un cine
+	@Override
+	public Cine buscarCine(Cine idCine) {
+		return cineDao.findById(idCine.getIdCine()).orElse(null);
+	}
+
+}

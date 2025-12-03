@@ -1,0 +1,58 @@
+package com.mx.Cine.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mx.Cine.Dao.CineDao;
+import com.mx.Cine.Dominio.Cine;
+
+//Indicamos que esta clase es un servicio(servidor)
+@Service
+public class ImplementacionCine implements CineServicio{
+	
+	@Autowired  //Inyectamos la dependencia del DAO de Cine
+	private CineDao cineDao;
+
+	//Guardar un cine
+	@Override
+	public void crearCine(Cine cine) {
+		//Verificamos si el cine ya existe
+		if(cineDao.existsById(cine.getIdCine())) {
+			//El throw lanza una excepcion si el cine ya existe
+			//IllegalArgumentException es una excepcion que indica que un metodo ha recibido un argumento ilegal o inapropiado
+			throw new IllegalArgumentException("El cine con ID " + cine.getIdCine() + " ya existe.");
+		}//Si no existe, lo guardamos
+		cineDao.save(cine);
+		
+		
+	}
+	
+	//Leer todos los cines
+	@Override
+	public List<Cine> leerCines() {
+		return (List<Cine>) cineDao.findAll();
+	}
+	
+	//Actualizar un cine
+	@Override
+	public void actualizarCine(Cine cine) {
+		cineDao.save(cine);
+		
+	}
+	
+	//Eliminar un cine
+	@Override
+	public void eliminarCine(Cine idCine) {
+		cineDao.delete(idCine);
+		
+	}
+	
+	//Buscar un cine
+	@Override
+	public Cine buscarCine(Cine idCine) {
+		return cineDao.findById(idCine.getIdCine()).orElse(null);
+	}
+
+}

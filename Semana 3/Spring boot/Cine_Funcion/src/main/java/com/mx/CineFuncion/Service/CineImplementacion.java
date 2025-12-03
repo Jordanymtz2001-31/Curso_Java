@@ -1,0 +1,55 @@
+package com.mx.CineFuncion.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mx.CineFuncion.Dao.CineDao;
+import com.mx.CineFuncion.Dominio.Cine;
+
+@Service //Indica que es un componente de servicio
+public class CineImplementacion implements CineServicio {
+	
+	@Autowired //Inyección de dependencia
+	private CineDao cineDao;
+
+	@Override
+	public List<Cine> listarC() {
+		return cineDao.findAll();
+	}
+
+	@Override
+	public void guardarC(Cine cine) {
+		cineDao.save(cine);
+		
+	}
+
+	@Override
+	public void editarC(Cine cine) {
+		cineDao.save(cine);
+		
+	}
+
+	@Override
+	public void eliminarC(Integer idCine) {
+		cineDao.deleteById(idCine);
+		
+	}
+
+	@Override
+	public Cine buscarC(Integer idCine) {
+		return cineDao.findById(idCine).orElse(null);
+	}
+	
+	//Metodo personalizado para buscar cines por nombre
+	public Cine buscarPorNombre(String nombre) {
+		return cineDao.findByNombre(nombre);
+	}
+	
+	//Método personalizado para verificar si existe un cine por nombre y en la misma ciudad
+	public boolean existeCine(String nombre, String ciudad) {
+		return cineDao.existsByNombreAndCiudadAllIgnoreCase(nombre, ciudad);
+	}
+
+}

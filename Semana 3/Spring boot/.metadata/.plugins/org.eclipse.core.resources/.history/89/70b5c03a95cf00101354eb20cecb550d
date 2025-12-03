@@ -1,0 +1,56 @@
+package com.mx.PadreHijo.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.data.autoconfigure.web.DataWebProperties.Sort;
+import org.springframework.stereotype.Service;
+
+import com.mx.PadreHijo.Dao.PadreDao;
+import com.mx.PadreHijo.Dominio.Padre;
+
+@Service //Indica que es un componente de servicio
+public class PadreImplementacion implements PadreService {
+	
+	@Autowired //Inyección de dependencia
+	private PadreDao padreDao;
+
+	@Override
+	public List<Padre> listarP() {
+		return padreDao.findAll(Sort.by(Sort.Direction.ASC, "idPadre"));
+	}
+
+	@Override
+	public void guardarP(Padre padre) {
+		padreDao.save(padre);
+		
+	}
+
+	@Override
+	public void editarP(Padre padre) {
+		padreDao.save(padre);
+		
+	}
+
+	@Override
+	public void eliminarP(Integer idPadre) {
+		padreDao.deleteById(idPadre);
+		
+	}
+
+	@Override
+	public Padre buscarP(Integer idPadre) {
+		return padreDao.findById(idPadre).orElse(null);
+	}
+	
+	//Metodo personalizado para buscar un padre por nombre
+	public Padre buscarPorNombre(String nombre) {
+		return padreDao.findByNombre(nombre);
+	}
+	
+	//Método personalizado para verificar si existe un padre por nombre y apellido
+	public boolean existePadre(String nombre, String apellido) {
+		return padreDao.existsByNombreAndApellidoAllIgnoreCase(nombre, apellido);
+	}
+
+}

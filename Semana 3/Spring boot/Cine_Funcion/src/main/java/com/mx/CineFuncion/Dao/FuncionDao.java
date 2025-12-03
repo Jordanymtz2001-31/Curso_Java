@@ -1,0 +1,20 @@
+package com.mx.CineFuncion.Dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.mx.CineFuncion.Dominio.Funcion;
+
+@Repository //Esto indica que es un componente de acceso a datos
+public interface FuncionDao extends JpaRepository<Funcion, Integer> {
+	// Con JpaRespository ya tenemos los métodos básicos para CRUD
+	
+	//METODOS PERSONALIZADOS DE JPA REPOSITORY
+	
+	//Método para verificar si existe una función por película y horarios, ignorando mayúsculas y minúsculas
+	public boolean existsByPeliculaAndHorariosAllIgnoreCase(String pelicula, String horarios);
+		
+	//Método para buscar una función por película
+	public Funcion findByPelicula(String pelicula);
+
+}

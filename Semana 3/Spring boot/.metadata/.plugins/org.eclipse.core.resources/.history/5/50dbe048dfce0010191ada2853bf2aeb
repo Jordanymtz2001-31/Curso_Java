@@ -1,0 +1,5 @@
+package com.mx.Empleado.Dominio;
+
+public class Empleado {
+
+}

@@ -1,0 +1,5 @@
+package com.mx.PadreHijo.Dominio;
+
+public class Padre {
+
+}

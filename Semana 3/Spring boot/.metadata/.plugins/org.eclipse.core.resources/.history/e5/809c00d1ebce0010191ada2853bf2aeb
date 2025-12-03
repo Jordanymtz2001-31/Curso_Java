@@ -1,0 +1,49 @@
+package com.mx.Empleado.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mx.Empleado.Dao.EmpleadoDao;
+import com.mx.Empleado.Dominio.Empleado;
+
+@Service //Indica que esta clase es un servicio de Spring donde se implementan las operaciones de negocio
+		//También permite la inyección de dependencias en otras clases
+public class ImplementacionEmpleado implements EmpleadoService {
+	
+	@Autowired //Inyecta automáticamente la dependencia del repositorio de Empleado de DAO
+	private EmpleadoDao empleadoDao;
+	//implementando el patron de inversion de control y mediante la tecnica de inyeccion de dependencias
+	//donde el contenedor de spring se encarga de crear e inyectar la dependencia requerida en tiempo de ejecucion
+
+	@Override
+	public void createEmpleado(Empleado empleado) {
+		empleadoDao.save(empleado); //Guarda el empleado en la base de datos utilizando el repositorio DAO
+		
+	}
+
+	@Override
+	public List<Empleado> readEmpleados() {
+		return (List<Empleado>) empleadoDao.findAll(); //Devuelve una lista de todos los empleados en la base de datos
+	}
+
+	@Override
+	public void updateEmpleado(Empleado empleado) {
+		empleadoDao.save(empleado); //Actualiza el empleado en la base de datos utilizando el repositorio DAO
+		//En Spring Data JPA, el método save() se utiliza tanto para crear como para actualizar entidades
+	}
+
+	@Override
+	public void deleteEmpleado(Empleado idEmpleado) {
+		empleadoDao.delete(idEmpleado); //Elimina el empleado de la base de datos utilizando el repositorio DAO
+		
+	}
+
+	@Override
+	public void searchEmpleado(Empleado idEmpleado) {
+		empleadoDao.findById(idEmpleado.getIdEmpleado()).orElse(null); //Busca un empleado por su ID en la base de datos utilizando el repositorio DAO
+					//el metodo findById devuelve un Optional que puede contener el empleado si se encuentra
+	}
+
+}
