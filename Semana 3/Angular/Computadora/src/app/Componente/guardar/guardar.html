@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header"><h2>Registro de computadora</h2></div>
+        <div class="card-body">
+            <th>Ingresa los datos de la computadora</th>
+            <form>
+                <div class="mb-3">
+                    <label for="marca" class="form-label">Marca:</label>
+                    <input type="text" class="form-control" [(ngModel)]="compu.marca" name="marca">
+                </div>
+                <div class="mb-3">
+                    <label for="modelo" class="form-label">Modelo:</label>
+                    <input type="text" class="form-control" [(ngModel)]="compu.modelo" name="modelo">
+                </div>
+                <div class="mb-3">
+                    <label for="ram" class="form-label">RAM (GB):</label>
+                    <input type="number"  class="form-control" [(ngModel)]="compu.ram" name="ram">
+                </div>
+                <div class="mb-3">
+                    <label for="procesador" class="form-label">Procesador:</label>
+                    <input type="text"  class="form-control" [(ngModel)]="compu.procesador" name="procesador">
+                </div>
+                <div class="mb-3">
+                    <label for="precio" class="form-label">Precio:</label>
+                    <input type="number" class="form-control" [(ngModel)]="compu.precio" name="precio">
+                </div>
+                <button type="submit" class="btn btn-primary" (click)="guardarComputadora()">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>
