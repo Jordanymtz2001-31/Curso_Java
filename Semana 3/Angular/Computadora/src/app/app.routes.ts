@@ -17,7 +17,7 @@ export const routes: Routes = [
         component: Guardar
     },
     {
-        path: 'editar',
+        path: 'editar/:id',
         component: Editar
     }
 

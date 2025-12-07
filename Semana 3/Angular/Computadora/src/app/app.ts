@@ -26,4 +26,8 @@ export class App {
     this.router.navigate(['editar']);
   }
 
+  buscarCompu() {
+    this.router.navigate(['buscar']);
+  }
+
 }

@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Servidor } from '../../Servidor/servidor';
 import { Computadora } from '../../Entidad/computadora';
@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 export class Listar implements OnInit {
 
   //Creamos el constructor para inicializar el componente
-  constructor(private router: Router, private servicio: Servidor) {}
+  constructor(private router: Router, private servicio: Servidor, private cdr: ChangeDetectorRef) {}
 
   //creamos una variable para almacenar la lista de computadoras
   listaComputadoras!: Computadora[] ; //Variable para almacenar la lista de computadoras
@@ -34,6 +34,7 @@ export class Listar implements OnInit {
     //Subscribimos para manejar el flujo de datos que recibira al consumir el servicio
     this.servicio.listar().subscribe((data) => {
       this.listaComputadoras = data;
+      this.cdr.detectChanges(); //Fuerza la detección de cambios
     });
   }
 
@@ -73,6 +74,9 @@ export class Listar implements OnInit {
     });
   }
 
-  
+  //Metodo para editar una computadora
+  editarCompu(id: number) {
+    this.router.navigate(['/editar', id]);
+  }
 
 }

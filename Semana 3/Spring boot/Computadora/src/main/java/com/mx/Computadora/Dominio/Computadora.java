@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity // Indica que esta clase es una entidad de JPA
-@Table // Indica que esta entidad se mapeará a una tabla en la base de datos
+@Table(name = "COMPUTADORA") // Indica que esta entidad se mapeará a una tabla en la base de datos
 public class Computadora {
 	
 	@Id

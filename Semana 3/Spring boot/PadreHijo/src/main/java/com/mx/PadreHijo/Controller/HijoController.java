@@ -47,14 +47,16 @@ public class HijoController {
 		Hijo hijogurdado = hijoService.buscarH(hijo.getIdHijo());
 		
 		//Validamos si no existe el hijo se guarda
-		if(hijogurdado != null) {
-			return ResponseEntity.status(HttpStatus.CREATED).body("Hijo guardado correctamente");
+		if(hijogurdado == null) {
+		    hijoService.guardarH(hijo);
+		    return ResponseEntity.status(HttpStatus.CREATED).body("Hijo guardado correctamente");
 		} else {
-			return ResponseEntity.status(HttpStatus.CONFLICT).body("Error al guardar el hijo");
+		    return ResponseEntity.status(HttpStatus.CONFLICT).body("Error al guardar el hijo");
 		}
 	}
 	
 	@PutMapping("/editar")
+	//El @RequestBody se utiliza para mapear el cuerpo de la solicitud HTTP a un objeto Java 
 	public ResponseEntity<String> editarHijo(@RequestBody Hijo hijo) {
 		//Primero buscamos si el hijo existe
 		Hijo hijoExistente = hijoService.buscarH(hijo.getIdHijo());
@@ -68,6 +70,7 @@ public class HijoController {
 	}
 	
 	@DeleteMapping("/eliminar/{idHijo}")
+	//@PathVariable extrae el valor de URL y lo inyecta como parámetro en el método. 
 	public ResponseEntity<String> eliminarHijo(@PathVariable Integer idHijo) {
 		//Primero buscamos si el hijo existe
 		Hijo hijoExistente = hijoService.buscarH(idHijo);
@@ -92,6 +95,7 @@ public class HijoController {
 	}
 	
 	@PostMapping("/buscarPorHobbie")
+	//El @RequestParam se utiliza para extraer parámetros de consulta de la URL
 	public ResponseEntity<?> buscarHijoPorHobbie(@RequestParam String hobbie) {
 		//Creamos una lista para guardar los hijos encontrados por hobbie
 		List<Hijo> hijosEncontrados = hijoService.buscarPorHobbie(hobbie);

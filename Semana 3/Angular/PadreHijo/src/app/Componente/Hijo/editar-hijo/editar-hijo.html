@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="card">
+            <div class="card-header"><h2>Editar Hijo</h2></div>
+            <div class="card-body">
+            <th>Ingresa los datos del hijo</th>
+            <form>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">ID:</label>
+                    <input type="number" class="form-control" placeholder="Esribe el ID" [(ngModel)]="hijo.idHijo" name="idHijo" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre:</label>
+                    <input type="text" class="form-control" placeholder="Esribe tu nombre" [(ngModel)]="hijo.nombre" name="nombre">
+                </div>
+                <div class="mb-3">
+                    <label for="apellido" class="form-label">Apellido:</label>
+                    <input type="text" class="form-control" placeholder="Esribe tu apellido" [(ngModel)]="hijo.apellido" name="apellido">
+                </div>
+                <div class="mb-3">
+                    <label for="edad" class="form-label">Edad:</label>
+                    <input type="number"  class="form-control" placeholder="Escribe tu edad" [(ngModel)]="hijo.edad" name="edad">
+                </div>
+                <div class="mb-3">
+                    <label for="hobbie" class="form-label">Hobbie:</label>
+                    <input type="text"  class="form-control" placeholder="Escribe tu hobbie" [(ngModel)]="hijo.hobbie" name="hobbie">
+                </div>
+                <div class="mb-3">
+                    <label for="idPadre" class="form-label">ID Padre:</label>
+                    <input type="text"  class="form-control" placeholder="Escribe el ID del padre" [(ngModel)]="hijo.padreId" name="idPadre">
+                </div>
+                <button type="submit" class="btn btn-primary" (click)="botonEditarHijo()">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

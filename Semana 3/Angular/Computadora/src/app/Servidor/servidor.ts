@@ -29,4 +29,8 @@ export class Servidor {
   eliminar(id: number) {
     return this.http.delete(this.url + "/eliminar/" + id, {responseType: 'text' as 'json'});
   }
+
+  buscar(id: number) {
+    return this.http.get<Computadora>(this.url + "/buscar/" + id);
+  }
 }

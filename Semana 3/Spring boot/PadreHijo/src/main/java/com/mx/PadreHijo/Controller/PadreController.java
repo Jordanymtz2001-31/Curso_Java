@@ -21,7 +21,7 @@ import com.mx.PadreHijo.Service.PadreImplementacion;
 
 @RestController //Indica que es un controlador REST
 @CrossOrigin //Permite solicitudes desde cualquier origen
-@RequestMapping("padre") //Ruta base para las solicitudes relacionadas con padres
+@RequestMapping("/padre") //Ruta base para las solicitudes relacionadas con padres
 public class PadreController {
 	
 	@Autowired //Inyección de dependencia

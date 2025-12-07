@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header"><h2>Registro Nuevo Padre</h2></div>
+        <div class="card-body">
+            <th>Ingresa los datos del padre</th>
+            <form>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">ID:</label>
+                    <input type="number" class="form-control" placeholder="Esribe el ID" [(ngModel)]="padre.idPadre" name="idPadre">
+                </div>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre:</label>
+                    <input type="text" class="form-control" placeholder="Esribe tu nombre" [(ngModel)]="padre.nombre" name="nombre">
+                </div>
+                <div class="mb-3">
+                    <label for="apellido" class="form-label">Apellido:</label>
+                    <input type="text" class="form-control" placeholder="Esribe tu apellido" [(ngModel)]="padre.apellido" name="apellido">
+                </div>
+                <div class="mb-3">
+                    <label for="edad" class="form-label">Edad:</label>
+                    <input type="number"  class="form-control" placeholder="Escribe tu edad" [(ngModel)]="padre.edad" name="edad">
+                </div>
+                <div class="mb-3">
+                    <label for="trabajo" class="form-label">Trabajo:</label>
+                    <input type="text"  class="form-control" placeholder="Escribe tu trabajo" [(ngModel)]="padre.trabajo" name="trabajo">
+                </div>
+                <button type="submit" class="btn btn-primary" (click)="guardarPadre()">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>
+

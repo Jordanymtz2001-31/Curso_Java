@@ -2,5 +2,7 @@
     <conversations>
         <conversation conversationId="33919b29-46b9-42a2-b191-8969a0153a05" creationDate="2025-12-01T19:27:23.327741100Z" lastMessageDate="2025-12-01T21:26:03.062845600Z" title="Implementing Validation in Cine Service"/>
         <conversation conversationId="e7b0a20a-cc78-48c0-a48d-c508586df5fb" creationDate="2025-12-02T20:26:13.748970600Z" lastMessageDate="2025-12-02T20:37:29.869187600Z" title="Resolving Spring Bean Creation Errors"/>
+        <conversation conversationId="07e39f98-c50e-4fa3-b8b3-b31bb1e89492" creationDate="2025-12-05T19:03:10.578404300Z" lastMessageDate="2025-12-05T20:51:12.473399900Z" title="Troubleshooting JPA Entity ID Generation"/>
+        <conversation conversationId="b69cc0cb-2469-42f3-a72b-c114ae21e8ea" creationDate="2025-12-07T20:06:38.801168400Z" lastMessageDate="2025-12-07T21:11:34.764401700Z" title="Debugging Withdrawal Logic in ATM System"/>
     </conversations>
 </user>

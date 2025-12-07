@@ -1,0 +1,96 @@
+<div class="container">
+    <div class="card w-50 mx-auto card border-info mb-3 mt-1">
+        <div class="card-header">
+            <h2>Registrar Hijo</h2>
+        </div>
+        <div class="card-body">
+            <h5 class="text-center mb-4">Ingresa los datos del nuevo Hijo</h5>
+
+            <!-- ID Hijo (opcional si es autoincremental) -->
+            <div class="mb-3">
+                <label class="form-label" for="idHijo">ID Hijo</label>
+                <input class="form-control" id="idHijo" type="number" placeholder="Ej: 1, 7, 200"
+                    [(ngModel)]="hijo.idHijo">
+            </div>
+
+            <!-- Nombre -->
+            <div class="mb-3">
+                <label class="form-label" for="nombre">Nombre *</label>
+                <input class="form-control" id="nombre" type="text" placeholder="Ej: Juan, Guillermo, Natalia"
+                    [(ngModel)]="hijo.nombre" required>
+            </div>
+
+            <!-- Apellido -->
+            <div class="mb-3">
+                <label class="form-label" for="apellido">Apellido *</label>
+                <input type="text" placeholder="Ej: Morales, Gutierez, Castillo" class="form-control" id="apellido"
+                    [(ngModel)]="hijo.apellido" required>
+            </div>
+
+            <!-- Edad -->
+            <div class="mb-3">
+                <label class="form-label" for="edad">Edad *</label>
+                <input type="number" placeholder="Ej: 5, 12, 18" class="form-control" id="edad" [(ngModel)]="hijo.edad"
+                    min="0" max="120" required>
+            </div>
+
+            <!-- Hobbie -->
+            <div class="mb-3">
+                <label class="form-label" for="hobbie">Hobbie</label>
+                <input type="text" placeholder="Ej: Fútbol, Videojuegos, Música" class="form-control" id="hobbie"
+                    [(ngModel)]="hijo.hobbie">
+            </div>
+
+            <!-- Select de Padres -->
+            <div class="mb-4">
+                <label class="form-label" for="padreSelect">Seleccionar Padre *</label>
+
+                <select class="form-select" id="padreSelect" [(ngModel)]="selectedPadreId"
+                    (change)="onPadreSeleccionado()" [disabled]="padres.length === 0 || loading" required>
+                    <option [ngValue]="null" disabled selected>
+                        -- Seleccione un padre --
+                    </option>
+                    <option *ngFor="let padre of padres" [ngValue]="padre.idPadre">
+                        {{padre.idPadre}} - {{padre.nombre}} {{padre.apellido}}
+                        <span *ngIf="padre.edad">({{padre.edad}} años)</span>
+                    </option>
+                </select>
+
+                <!-- Mostrar información del padre seleccionado -->
+                <div *ngIf="selectedPadreId" class="alert alert-info mt-2 py-2">
+                    <small>
+                        <i class="fas fa-check-circle me-1"></i>
+                        Padre seleccionado:
+                        <strong>
+                            {{getPadreNombre(selectedPadreId)}}
+                        </strong>
+                    </small>
+                </div>
+
+                <!-- Mensaje si no hay padres -->
+                <div *ngIf="padres.length === 0" class="alert alert-warning mt-2">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    No hay padres registrados.
+                    <a [routerLink]="['/guardarP']" class="alert-link">
+                        Regístre un padre primero
+                    </a>
+                </div>
+            </div>
+
+            <!-- Botones -->
+            <div class="text-center mt-4">
+                <button type="button" class="btn btn-success btn-lg me-3" (click)="guardarHijo()"
+                    [disabled]="!selectedPadreId || !hijo.nombre || !hijo.apellido || !hijo.edad || loading">
+                    <span *ngIf="!loading">Guardar</span>
+                    <span *ngIf="loading">
+                        <i class="fas fa-spinner fa-spin me-1"></i>
+                        Guardando...
+                    </span>
+                </button>
+                <button type="button" class="btn btn-secondary btn-lg" (click)="cancelar()" [disabled]="loading">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

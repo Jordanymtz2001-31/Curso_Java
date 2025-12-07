@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h1>Lista de Padres</h1>
+        </div>
+        <table class="table table-hover">
+            <thead >
+                <tr >
+                    <th scope="col" >ID</th>
+                    <th scope="col" >NOMBRE</th>
+                    <th scope="col" >APELLIDO</th>
+                    <th scope="col" >EDAD</th>
+                    <th scope="col" >TRABAJO</th>
+                    <th scope="col" >ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody >
+                <!-- computadora es la entidad-->
+                @for (padre of padres; track padre.idPadre){
+                <tr class="table-dark" >
+                    <th>{{padre.idPadre}}</th>
+                    <td >{{padre.nombre}}</td>
+                    <td >{{padre.apellido}}</td>
+                    <td >{{padre.edad}}</td>
+                    <td >{{padre.trabajo}}</td>
+                    <td >
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button class="button btn btn-warning" (click)="editarPadre(padre)"> <i class="bi bi-pencil"></i>Editar</button>
+                            <button class="button btn btn-danger" (click)="eliminarPadre(padre.idPadre)"><i class="bi bi-trash" ></i>Eliminar</button>
+                        </div>
+                    </td>
+                </tr>
+                }
+                @if (padres.length === 0) {
+                <tr>
+                    <td colspan="6" class="text-center">No hay padres registrados</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -13,6 +13,8 @@ import com.mx.PadreHijo.Dominio.Hijo;
 public interface HijoDao extends JpaRepository<Hijo, Integer> {
 	//Con JPA repository ya tenemos los métodos básicos para CRUD
 	
+	
+	
 	//Anotacion que nos permite hacer consultas personalizadas con SQL
 	@Query("SELECT h FROM Hijo h WHERE upper(h.hobbie) = upper(:hobbie)")
 	List<Hijo> findByHobbie(@Param("hobbie") String hobbie);

@@ -34,7 +34,7 @@ SELECT * FROM PADRE;
 
 --DECLARACION DE LA TABLA HIJO
 CREATE TABLE HIJO(
-    ID_HIJO NVARCHAR2(50),
+    ID_HIJO NUMBER,
     NOMBRE NVARCHAR2(50),
     APELLIDO NVARCHAR2(50),
     EDAD NUMBER,
@@ -65,13 +65,15 @@ INSERT INTO HIJO VALUES (17, 'David', 'Gutiérrez', 15, NULL, 17);
 INSERT INTO HIJO VALUES (18, 'Paula', 'Santos', 13, 'Dibujo', 18);
 INSERT INTO HIJO VALUES (19, 'Jorge', 'Torres', 16, 'Ciclismo', 19);
 INSERT INTO HIJO VALUES (20, 'Andrea', 'Navarro', 0, 'Fotografía', 20);
-INSERT INTO HIJO VALUES (21, 'Carlos', 'Pérez', 10, 'Videojuegos', NULL);
-INSERT INTO HIJO VALUES (22, 'Ana', 'Gómez', 9, 'Baile', NULL);
-INSERT INTO HIJO VALUES (23, 'Pedro', 'Ruiz', 11, 'Natación', NULL);
-INSERT INTO HIJO VALUES (24, 'Laura', 'Herrera', 8, NULL, NULL);
-INSERT INTO HIJO VALUES (25, 'José', 'Castro', 0, 'Fútbol', NULL);
+INSERT INTO HIJO VALUES (21, 'Carlos', 'Pérez', 10, 'Videojuegos', 12);
+INSERT INTO HIJO VALUES (22, 'Ana', 'Gómez', 9, 'Baile', 3);
+INSERT INTO HIJO VALUES (23, 'Pedro', 'Ruiz', 11, 'Natación', 4);
+INSERT INTO HIJO VALUES (24, 'Laura', 'Herrera', 8, 'Natación', 1);
+INSERT INTO HIJO VALUES (25, 'José', 'Castro', 0, 'Fútbol', 20);
 
 SELECT *FROM HIJO;
+
+delete FROM HIJO WHERE ID_HIJO = 31
 
 --INER JOIN
 SELECT * FROM HIJO H
