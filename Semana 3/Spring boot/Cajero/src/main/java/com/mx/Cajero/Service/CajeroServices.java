@@ -41,13 +41,15 @@ public class CajeroServices {
 				Integer cantidadDeno = deno.getCantidad();
 				
 				//Calculamos cuántos billetes de esta denominación se pueden entregar
-				Integer billetesNecesarios = Math.toIntExact(Math.round(montoRestante / valorDeno));
+				Integer billetesNecesarios = (int)(montoRestante / valorDeno);
 				Integer billetesAEntregar = Math.min(billetesNecesarios, cantidadDeno);
 				
 				if(billetesAEntregar > 0) {
 					
+					Float montoAEntregar = billetesAEntregar * valorDeno;
 					//Calculamos el monto restante después de entregar los billetes
-					montoRestante -=(billetesAEntregar * valorDeno);
+					montoRestante =montoRestante - montoAEntregar ;
+					//Redondeamos el monto restante a dos decimales
 					montoRestante = Math.round(montoRestante * 100.0f) / 100.0f;
 					//Actualizamos la cantidad de billetes en el inventario
 					deno.setCantidad(cantidadDeno - billetesAEntregar);
@@ -74,17 +76,17 @@ public class CajeroServices {
 		Dao.deleteAll();
 		
 		//Agregamos las denominaciones iniciales
-		Dao.save(new Cajero(null, "Billete", 2, 1000.0f));
-		Dao.save(new Cajero(null, "Billete", 5, 500.0f));
-		Dao.save(new Cajero(null, "Billete", 10, 200.0f));
-		Dao.save(new Cajero(null, "Billete", 20, 100.0f));
-		Dao.save(new Cajero(null, "Billete", 30, 50.0f));
-		Dao.save(new Cajero(null, "Billete", 40, 20.0f));
-		Dao.save(new Cajero(null, "Moneda", 50, 10.0f));
-		Dao.save(new Cajero(null, "Moneda", 100, 5.0f));
-		Dao.save(new Cajero(null, "Moneda", 200, 2.0f));
-		Dao.save(new Cajero(null, "Moneda", 300, 1.0f));
-		Dao.save(new Cajero(null, "Moneda", 400, 0.5f));
+		 Dao.save(new Cajero(null, "Billete", 2, 1000.0f));
+		 Dao.save(new Cajero(null, "Billete", 5, 500.0f));
+		 Dao.save(new Cajero(null, "Billete", 10, 200.0f));
+		 Dao.save(new Cajero(null, "Billete", 20, 100.0f));
+		 Dao.save(new Cajero(null, "Billete", 30, 50.0f));
+		 Dao.save(new Cajero(null, "Billete", 40, 20.0f));
+		 Dao.save(new Cajero(null, "Moneda", 50, 10.0f));
+		 Dao.save(new Cajero(null, "Moneda", 100, 5.0f));
+		 Dao.save(new Cajero(null, "Moneda", 200, 2.0f));
+		 Dao.save(new Cajero(null, "Moneda", 300, 1.0f));
+		 Dao.save(new Cajero(null, "Moneda", 100, 0.5f));
 		
 	}
 	

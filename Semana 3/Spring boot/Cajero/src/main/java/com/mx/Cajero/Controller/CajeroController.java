@@ -14,7 +14,7 @@ import com.mx.Cajero.Service.CajeroServices;
 
 @RestController //Indicamos que esta clase es un controlador REST
 @RequestMapping("/cajero") //Definimos la ruta base para este controlador
-@CrossOrigin //Habilitamos CORS para permitir solicitudes desde otros dominios
+@CrossOrigin(origins = "*") //Habilitamos CORS para permitir solicitudes desde otros dominios
 public class CajeroController {
 	
 	@Autowired //Inyeccion de dependencia del servicio
@@ -37,7 +37,7 @@ public class CajeroController {
 	
 	//Metodo de reinicializacion del cajero
 	@PostMapping("/reiniciar")
-	public ResponseEntity<String> reiniciarCajero() {
+	public ResponseEntity<?> reiniciarCajero() {
 		servicio.reiniciarCajero();
 		return ResponseEntity.ok("Cajero reiniciado correctamente.");
 	}

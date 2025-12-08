@@ -1,5 +1,0 @@
-package com.mx.Cine.Service;
-
-public interface CineServicio {
-
-}

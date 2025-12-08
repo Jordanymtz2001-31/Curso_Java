@@ -1,0 +1,144 @@
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+          <h2 class="mb-0">💳 CAJERO AUTOMÁTICO</h2>
+        </div>
+
+        <div class="card-body p-4">
+          <!-- Botones principales -->
+          <div class="d-grid gap-3 mb-4">
+            <!-- Botón Consultar Saldo -->
+            <button class="btn btn-info btn-lg" (click)="btnConsultar()">
+              <i class="bi bi-binoculars"></i> Consultar Saldo
+            </button>
+
+            <!-- Botón Consultar Denominaciones -->
+            <button 
+              class="btn btn-warning btn-lg" 
+              (click)="btnDenominaciones()">
+              <i class="bi bi-cash"></i> Consultar Denominaciones
+            </button>
+
+            <!-- Botón Retirar Dinero -->
+            <button 
+              class="btn btn-danger btn-lg" 
+              (click)="btnRetirar()">
+              <i class="bi bi-dash-circle"></i> Retirar Dinero
+            </button>
+
+            <!-- Botón Reiniciar Saldo -->
+            <button class="btn btn-secondary btn-lg" (click)="btnReiniciar()">
+              <i class="bi bi-arrow-clockwise"></i> Reiniciar Saldo
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Denominaciones -->
+<div class="modal fade" id="denominacionesModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title">Denominaciones Disponibles</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead class="table-warning">
+              <tr>
+                <th>Denominación</th>
+                <th>Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let denom of denominaciones">
+                <td>${{ denom.valor }}</td>
+                <td>{{ denom.cantidad }} {{denom.tipo}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Retirar Dinero -->
+<div class="modal fade" id="retirarModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title">Retirar Dinero</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="montoRetiro" class="form-label">Cantidad a Retirar ($)</label>
+          <input type="number" class="form-control form-control-lg" id="montoRetiro" [(ngModel)]="cantidadRetirar" placeholder="Ingrese la cantidad" min="0">
+        </div>
+        <div class="alert alert-info">
+          <small><strong>Saldo disponible:</strong> ${{ saldo }}</small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button 
+          type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cancelar 
+        </button>
+        <button 
+          type="button" class="btn btn-danger" (click)="btnRetirarConfirm()"> Retirar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Resultado Retiro -->
+<div class="modal fade" id="resultadoRetiroModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">✓ Retiro Exitoso</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="resultadoRetiro" class="alert alert-success mb-3">
+          <strong>Monto Entregado:</strong> ${{ resultadoRetiro.montoEntregado }}
+        </div>
+
+        <div *ngIf="resultadoRetiro" class="card mb-3">
+          <div class="card-header bg-light">
+            <strong>Denominaciones Entregadas</strong>
+          </div>
+          <div class="card-body">
+            <div *ngIf="resultadoRetiro.denominaciones && resultadoRetiro.denominaciones.length > 0">
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let denom of resultadoRetiro.denominaciones">
+                  <strong>${{ denom.denominacion }}</strong> x {{ denom.cantidad }}
+                </li>
+              </ul>
+            </div>
+            <div *ngIf="!resultadoRetiro.denominaciones || resultadoRetiro.denominaciones.length === 0" class="text-muted">
+              Sin denominaciones
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="resultadoRetiro" class="alert alert-info">
+          <strong>Saldo Restante:</strong> ${{ resultadoRetiro.saldoRestante }}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>

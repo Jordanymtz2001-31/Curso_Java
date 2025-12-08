@@ -1,5 +1,0 @@
-package com.mx.Empleado.Service;
-
-public interface EmpleadoService {
-
-}
