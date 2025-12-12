@@ -101,11 +101,9 @@ public class EmpleadoController {
 	
 	@GetMapping("/listTienda/{tiendaId}")
 	public ResponseEntity<?> ListarPorTiendaId(@PathVariable int tiendaId){
-		if(empleadoServices.listarPorTiendaId(tiendaId).isEmpty()) { // Verifica si la lista de empleados está vacía
-			return ResponseEntity.noContent().build();
-		}else {
+		
 			return ResponseEntity.ok(empleadoServices.listarPorTiendaId(tiendaId));
-		}
+		
 	}
 
 }

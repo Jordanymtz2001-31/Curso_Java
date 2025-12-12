@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.mx.Departamento.Dto.EmpleadoDto;
+import com.mx.Departamento.Dto.ProductoDto;
 import com.mx.Departamento.Entidad.Departamento;
 import com.mx.Departamento.Repositorio.DepartamentoRepo;
 
@@ -58,6 +59,15 @@ public class DepartamentoService {
 		//Depende del Id del empleaso se llama (todos los atributos de empelado) se pasa a EmpleadoDto
 		List<EmpleadoDto> emps = restTemplate.getForObject("http://localhost:8001/empleados/listDepa/"+ departamentoId, List.class);
 		return emps;
+	}
+	
+	//Metodo para listar productos por departamento
+	public List<ProductoDto> listarProducto(int departamentoId){
+		@SuppressWarnings("unchecked")
+		
+		//Depende del Id del empleaso se llama (todos los atributos de empelado) se guarda a EmpleadoDto
+		List<ProductoDto> prods = restTemplate.getForObject("http://localhost:8002/productos/departamento/"+ departamentoId, List.class);
+		return prods;
 	}
 
 }

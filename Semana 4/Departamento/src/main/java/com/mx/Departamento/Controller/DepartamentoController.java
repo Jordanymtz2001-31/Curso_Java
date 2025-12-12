@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.mx.Departamento.Dto.EmpleadoDto;
+import com.mx.Departamento.Dto.ProductoDto;
 import com.mx.Departamento.Entidad.Departamento;
 import com.mx.Departamento.Service.DepartamentoService;
 
@@ -106,6 +107,29 @@ public class DepartamentoController {
 					return ResponseEntity.noContent().build();
 				}else {
 					return ResponseEntity.ok(emps);
+				}
+			}
+		}catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocurrio un error, el servidor no esta diponible");
+		}
+	
+	}
+	
+	//Metodo para listar productos dependiendo del departamento
+	@GetMapping("/listarProductos/{departamentoId}")
+	public ResponseEntity<?> listarProductos(@PathVariable int departamentoId){
+		try { //Captura cualquier excepción que pueda ocurrir al llamar al otro microservicio
+			Departamento depa = servicio.buscar(departamentoId);
+			if(depa == null) {	
+				return ResponseEntity.badRequest().body("El departamento no existe");
+			}else { 
+				//Validar si los productos que vienen del otro microservicio estan vacios
+				
+				List<ProductoDto> prods = servicio.listarProducto(departamentoId);
+				if(prods.isEmpty()) { // Si la lista de productos está vacía
+					return ResponseEntity.noContent().build();
+				}else {
+					return ResponseEntity.ok(prods);
 				}
 			}
 		}catch (Exception e) {

@@ -86,9 +86,7 @@ public class ProductoController {
 	//EndPoint para listar productos por departamentoId
 	@GetMapping("/departamento/{depaId}")
 	public ResponseEntity<?> ListarProductosPorDepa(@PathVariable int depaId){
-		Producto producto = dao.buscar(depaId);
-		
-		if(producto == null) {
+		if(dao.listarPorDepartamentoId(depaId).isEmpty()) {
 			return ResponseEntity.status(404).body("No hay productos en este departamento");
 			}else {
 				return ResponseEntity.ok(dao.listarPorDepartamentoId(depaId));

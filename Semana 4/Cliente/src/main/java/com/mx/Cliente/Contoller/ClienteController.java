@@ -89,6 +89,10 @@ public class ClienteController {
 			return ResponseEntity.ok("Eliminado");
 		}
 	}
+	//-------------------------------------------------------------------------------------------
+	
+	//METODOS PERSONALIZADOS
+	
 	
 	//Listar por tienda
 	@GetMapping("/listarXTienda/{tiendaId}")

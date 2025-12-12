@@ -1,0 +1,8 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.project.sourcePaths": [
+        "proveedor1/src/main/java/com/mx/proveedor1",
+        "Proveedores/src/main/java/com/mx/Proveedores"
+    ]
+}
