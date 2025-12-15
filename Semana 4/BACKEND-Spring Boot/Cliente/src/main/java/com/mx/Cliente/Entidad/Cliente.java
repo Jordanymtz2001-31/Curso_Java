@@ -23,6 +23,8 @@ import lombok.ToString;
 @ToString // Genera automáticamente el método toString
 public class Cliente {
 	
+	
+
 	@Id // Indica que este campo es la clave primaria
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID_CLIENTE")
@@ -40,5 +42,20 @@ public class Cliente {
 	
 	@Column(name="TIENDAD_ID")
 	private Integer tiendaId;
+	
+	
+	//Constructor sin idCliente para usarlo en pruebas y al guardar nuevos clientes
+	public Cliente(String nombre, String apellidoP, String apellidoM, Integer edad, Long telefono, Integer tiendaId) {
+	
+		this.nombre = nombre;
+		this.apellidoP = apellidoP;
+		this.apellidoM = apellidoM;
+		this.edad = edad;
+		this.telefono = telefono;
+		this.tiendaId = tiendaId;
+	}
+	
+	
+	
 
 }

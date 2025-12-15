@@ -20,5 +20,17 @@ public class Tienda {
 	private String direccion;
 	private Etipos tipo;
 	private String ciudad;
+	
+	//Contructor para las prueba y no pasarle el ID por que ya se genera
+	public Tienda(String codigo, String nombre, String direccion, Etipos tipo, String ciudad) {
+		
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.tipo = tipo;
+		this.ciudad = ciudad;
+	}
+	
+	
 
 }
