@@ -6,8 +6,8 @@
     </div>
 
     <!-- Menú Principal -->
-    <ul class="nav-menu">
-      <!-- TIENDAS (Menú Principal) -->
+    <ul class="nav-menu" >
+      <!-- TIENDAS -->
       <li class="nav-item dropdown">
         <button class="nav-link dropdown-toggle" (click)="toggleMenu('tiendas')">
           <span class="icon">🏪</span> Tiendas
@@ -15,129 +15,101 @@
         </button>
         <div class="dropdown-menu" [class.show]="isMenuOpen('tiendas')">
           <a class="dropdown-item" (click)="listarTiendas()">
-            <span>📋</span> Listar Tiendas
+            <span>📋</span> Listar
           </a>
           <a class="dropdown-item" (click)="guardarTiendas()">
-            <span>➕</span> Guardar Tienda
-          </a>
-          <a class="dropdown-item" (click)="editarTiendas()">
-            <span>✏️</span> Editar Tienda
+            <span>➕</span> Guardar
           </a>
           <a class="dropdown-item" (click)="detallesTiendas()">
             <span>🔍</span> Ver Detalles
           </a>
+        </div>
+      </li>
+
+      <!-- PRODUCTOS -->
+      <li class="nav-item dropdown">
+        <button class="nav-link dropdown-toggle" (click)="toggleMenu('productos')">
+          <span class="icon">📦</span> Productos
+          <span class="arrow" [class.active]="isMenuOpen('productos')">▼</span>
+        </button>
+        <div class="dropdown-menu" [class.show]="isMenuOpen('productos')">
+          <a class="dropdown-item" (click)="listarProductos()">
+            <span>📋</span> Listar
+          </a>
+          <a class="dropdown-item" (click)="guardarProductos()">
+            <span>➕</span> Guardar
+          </a>
+        </div>
+      </li>
+
+      <!-- CLIENTES -->
+      <li class="nav-item dropdown">
+        <button class="nav-link dropdown-toggle" (click)="toggleMenu('clientes')">
+          <span class="icon">👤</span> Clientes
+          <span class="arrow" [class.active]="isMenuOpen('clientes')">▼</span>
+        </button>
+        <div class="dropdown-menu" [class.show]="isMenuOpen('clientes')">
+          <a class="dropdown-item" (click)="listarClientes()">
+            <span>📋</span> Listar
+          </a>
+          <a class="dropdown-item" (click)="guardarClientes()">
+            <span>➕</span> Guardar
+          </a>
+        </div>
+      </li>
+
+      <!-- DEPARTAMENTOS -->
+      <li class="nav-item dropdown">
+        <button class="nav-link dropdown-toggle" (click)="toggleMenu('departamentos')">
+          <span class="icon">🏢</span> Departamentos
+          <span class="arrow" [class.active]="isMenuOpen('departamentos')">▼</span>
+        </button>
+        <div class="dropdown-menu" [class.show]="isMenuOpen('departamentos')">
+          <a class="dropdown-item" (click)="listarDepartamentos()">
+            <span>📋</span> Listar
+          </a>
+          <a class="dropdown-item" (click)="guardarDepartamentos()">
+            <span>➕</span> Guardar
+          </a>
           <hr class="dropdown-divider">
-          <!-- Submenús de servicios por Tienda -->
-          <li class="nav-item submenu">
-            <button class="nav-link dropdown-toggle" (click)="toggleMenu('servicios')">
-              <span class="icon">⚙️</span> Servicios por Tienda
-              <span class="arrow" [class.active]="isMenuOpen('servicios')">▶</span>
-            </button>
-            <div class="submenu-content" [class.show]="isMenuOpen('servicios')">
-              <!-- Productos -->
-              <li class="nav-item submenu-item">
-                <button class="nav-link dropdown-toggle" (click)="toggleMenu('productos')">
-                  <span class="icon">📦</span> Productos
-                  <span class="arrow" [class.active]="isMenuOpen('productos')">▶</span>
-                </button>
-                <div class="submenu-content" [class.show]="isMenuOpen('productos')">
-                  <a class="dropdown-item" (click)="listarProductos()">
-                    <span>📋</span> Listar
-                  </a>
-                  <a class="dropdown-item" (click)="guardarProductos()">
-                    <span>➕</span> Guardar
-                  </a>
-                  <a class="dropdown-item" (click)="editarProductos()">
-                    <span>✏️</span> Editar
-                  </a>
-                </div>
-              </li>
+          <a class="dropdown-item" (click)="detallesDepartamentosProd()">
+            <span>🔍</span> Ver Productos
+          </a>
+          <a class="dropdown-item" (click)="detallesDepartamentosEmpl()">
+            <span>🔍</span> Ver Empleados
+          </a>
+        </div>
+      </li>
 
-              <!-- Clientes -->
-              <li class="nav-item submenu-item">
-                <button class="nav-link dropdown-toggle" (click)="toggleMenu('clientes')">
-                  <span class="icon">👤</span> Clientes
-                  <span class="arrow" [class.active]="isMenuOpen('clientes')">▶</span>
-                </button>
-                <div class="submenu-content" [class.show]="isMenuOpen('clientes')">
-                  <a class="dropdown-item" (click)="listarClientes()">
-                    <span>📋</span> Listar
-                  </a>
-                  <a class="dropdown-item" (click)="guardarClientes()">
-                    <span>➕</span> Guardar
-                  </a>
-                  <a class="dropdown-item" (click)="editarClientes()">
-                    <span>✏️</span> Editar
-                  </a>
-                </div>
-              </li>
+      <!-- EMPLEADOS -->
+      <li class="nav-item dropdown">
+        <button class="nav-link dropdown-toggle" (click)="toggleMenu('empleados')">
+          <span class="icon">👨‍💼</span> Empleados
+          <span class="arrow" [class.active]="isMenuOpen('empleados')">▼</span>
+        </button>
+        <div class="dropdown-menu" [class.show]="isMenuOpen('empleados')">
+          <a class="dropdown-item" (click)="listarEmpleados()">
+            <span>📋</span> Listar
+          </a>
+          <a class="dropdown-item" (click)="guardarEmpleados()">
+            <span>➕</span> Guardar
+          </a>
+        </div>
+      </li>
 
-              <!-- Departamentos -->
-              <li class="nav-item submenu-item">
-                <button class="nav-link dropdown-toggle" (click)="toggleMenu('departamentos')">
-                  <span class="icon">🏢</span> Departamentos
-                  <span class="arrow" [class.active]="isMenuOpen('departamentos')">▶</span>
-                </button>
-                <div class="submenu-content" [class.show]="isMenuOpen('departamentos')">
-                  <a class="dropdown-item" (click)="listarDepartamentos()">
-                    <span>📋</span> Listar
-                  </a>
-                  <a class="dropdown-item" (click)="guardarDepartamentos()">
-                    <span>➕</span> Guardar
-                  </a>
-                  <a class="dropdown-item" (click)="editarDepartamentos()">
-                    <span>✏️</span> Editar
-                  </a>
-                  <hr class="dropdown-divider">
-                  <!-- Detalles de Departamento (Productos y Empleados) -->
-                  <a class="dropdown-item" (click)="detallesDepartamentosProd()">
-                    <span>🔍</span> Ver Productos
-                  </a>
-                  <a class="dropdown-item" (click)="detallesDepartamentosEmpl()">
-                    <span>🔍</span> Ver Empleados
-                  </a>
-                </div>
-              </li>
-
-              <!-- Empleados -->
-              <li class="nav-item submenu-item">
-                <button class="nav-link dropdown-toggle" (click)="toggleMenu('empleados')">
-                  <span class="icon">👨‍💼</span> Empleados
-                  <span class="arrow" [class.active]="isMenuOpen('empleados')">▶</span>
-                </button>
-                <div class="submenu-content" [class.show]="isMenuOpen('empleados')">
-                  <a class="dropdown-item" (click)="listarEmpleados()">
-                    <span>📋</span> Listar
-                  </a>
-                  <a class="dropdown-item" (click)="guardarEmpleados()">
-                    <span>➕</span> Guardar
-                  </a>
-                  <a class="dropdown-item" (click)="editarEmpleados()">
-                    <span>✏️</span> Editar
-                  </a>
-                </div>
-              </li>
-
-              <!-- Proveedores -->
-              <li class="nav-item submenu-item">
-                <button class="nav-link dropdown-toggle" (click)="toggleMenu('proveedores')">
-                  <span class="icon">🚚</span> Proveedores
-                  <span class="arrow" [class.active]="isMenuOpen('proveedores')">▶</span>
-                </button>
-                <div class="submenu-content" [class.show]="isMenuOpen('proveedores')">
-                  <a class="dropdown-item" (click)="listaProveedores()">
-                    <span>📋</span> Listar
-                  </a>
-                  <a class="dropdown-item" (click)="guardarProveedores()">
-                    <span>➕</span> Guardar
-                  </a>
-                  <a class="dropdown-item" (click)="editarProveedores()">
-                    <span>✏️</span> Editar
-                  </a>
-                </div>
-              </li>
-            </div>
-          </li>
+      <!-- PROVEEDORES -->
+      <li class="nav-item dropdown">
+        <button class="nav-link dropdown-toggle" (click)="toggleMenu('proveedores')">
+          <span class="icon">🚚</span> Proveedores
+          <span class="arrow" [class.active]="isMenuOpen('proveedores')">▼</span>
+        </button>
+        <div class="dropdown-menu" [class.show]="isMenuOpen('proveedores')">
+          <a class="dropdown-item" (click)="listaProveedores()">
+            <span>📋</span> Listar
+          </a>
+          <a class="dropdown-item" (click)="guardarProveedores()">
+            <span>➕</span> Guardar
+          </a>
         </div>
       </li>
     </ul>

@@ -1,1 +1,49 @@
-<p>listar-e works!</p>
+<div class="container">
+    <div class="card border-info mb-3 mt-1">
+        <div class="card-header">
+            <h2 class="text-center">LISTA DE EMPLEADOS</h2>
+            <div class="container">
+
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">ID EMPLEADO/th>
+                                <th scope="col">NOMBRE</th>
+                                <th scope="col">APELLIDO P</th>
+                                <th scope="col">APELLIDO M</th>
+                                <th scope="col">EDAD</th>
+                                <th scope="col">TELEFONO</th>
+                                <th scope="col">PUESTO</th>
+                                <th scope="col">DEPARTAMENTO ID</th>
+                                <th scope="col">TIENDA ID</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (empleado of empleados; track empleado.id) {
+                            <tr>
+                                <td>{{empleado.id}}</td>
+                                <td>{{empleado.nombre}}</td>
+                                <td>{{empleado.apellidoP}}</td>
+                                <td>{{empleado.apellidoM}}</td>
+                                <td>{{empleado.edad}}</td>
+                                <td>{{empleado.telefono}}</td>
+                                <td>{{empleado.puesto}}</td>
+                                <td>{{empleado.departamentoId}}</td>
+                                <td>{{empleado.tiendaId}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-warning">EDITAR</button>
+                                    <button type="button" class="btn btn-danger" (click)="btnEliminar(empleado.id)">ELIMINAR</button>
+                                </td>
+                            </tr>
+                            } @empty {
+                            <td colspan="5" style="text-align: center;">No existen registros</td>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>

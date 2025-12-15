@@ -10,14 +10,18 @@
 
 .navbar-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  padding: 0 20px;
-  max-width: 1200px;
+  justify-content: center;
+  padding: 15px 20px;
+  max-width: 100%;
   margin: 0 auto;
+  gap: 15px;
 }
 
 .navbar-brand {
-  margin-right: auto;
+  margin-right: 0;
+  text-align: center;
 }
 
 .navbar-brand h1 {
@@ -32,6 +36,8 @@
 .nav-menu {
   list-style: none;
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   margin: 0;
   padding: 0;
   gap: 10px;
