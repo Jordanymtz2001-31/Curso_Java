@@ -8,13 +8,13 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">ID TIENDA</th>
                                 <th scope="col">CODIGO</th>
                                 <th scope="col">NOMBRE</th>
                                 <th scope="col">DIRECCION</th>
                                 <th scope="col">TIPO TIENDA</th>
                                 <th scope="col">CIUDAD</th>
+                                <th scope="col">ACCIONES</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -24,10 +24,10 @@
                                 <td>{{tienda.codigo}}</td>
                                 <td>{{tienda.nombre}}</td>
                                 <td>{{tienda.direccion}}</td>
-                                <td>{{tienda.tipoTienda}}</td>
+                                <td>{{tienda.tipo}}</td>
                                 <td>{{tienda.ciudad}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning">EDITAR</button>
+                                    <button type="button" class="btn btn-success" (click)="btnEditar(tienda.idTienda)">EDITAR</button>
                                     <button type="button" class="btn btn-danger" (click)="btnEliminar(tienda.idTienda)">ELIMINAR</button>
                                 </td>
                             </tr>

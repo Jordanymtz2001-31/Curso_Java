@@ -49,18 +49,20 @@ export class ListarD implements OnInit{
     }).then((result) => {
       if (result.isConfirmed) {
         this.servicio.eliminarDepartamentos(id).subscribe({
-          next: (data) => {
+          next: (response) => {
+            const mensaje = response.body?.message || response.body || 'El departamento ha sido eliminada correctamente';
             Swal.fire(
               'Eliminada',
-              'El departamento ha sido eliminado correctamente',
+              mensaje,
               'success'
             );
             this.ngOnInit(); //Recargamos la lista de departamentos despues de eliminar
           },
           error: (err) => {
+            const errorMsg = err.error?.error || err.error || 'Hubo un problema al eliminar el departamento';
             Swal.fire(
               'Error',
-              'Hubo un problema al eliminar el departamento',
+              errorMsg,
               'error'
             );
           }

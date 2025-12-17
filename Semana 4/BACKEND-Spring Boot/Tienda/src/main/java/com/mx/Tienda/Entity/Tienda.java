@@ -1,11 +1,14 @@
 package com.mx.Tienda.Entity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
+
 
 @Entity // Indica que es una entidad
 @Table //Indica que es una tabla 
@@ -21,15 +24,21 @@ public class Tienda {
 	private Etipos tipo;
 	private String ciudad;
 	
-	//Contructor para las prueba y no pasarle el ID por que ya se genera
-	public Tienda(String codigo, String nombre, String direccion, Etipos tipo, String ciudad) {
-		
-		this.codigo = codigo;
-		this.nombre = nombre;
-		this.direccion = direccion;
-		this.tipo = tipo;
-		this.ciudad = ciudad;
-	}
+	
+	// Jackson necesita esto para deserializar el enum desde JSON
+    @JsonCreator
+    public static Etipos fromString(String value) {
+        return Etipos.valueOf(value.toUpperCase());
+    }
+	
+	/*
+	 * //Contructor para las prueba y no pasarle el ID por que ya se genera public
+	 * Tienda(String codigo, String nombre, String direccion, Etipos tipo, String
+	 * ciudad) {
+	 * 
+	 * this.codigo = codigo; this.nombre = nombre; this.direccion = direccion;
+	 * this.tipo = tipo; this.ciudad = ciudad; }
+	 */
 	
 	
 

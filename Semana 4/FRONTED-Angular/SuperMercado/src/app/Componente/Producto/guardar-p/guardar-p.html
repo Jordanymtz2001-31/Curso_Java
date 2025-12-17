@@ -1,1 +1,54 @@
-<p>guardar-p works!</p>
+    <div class="guardar-cliente-container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Nuevo Producto</h1>
+                <p class="subtitle">Completa el formulario para registrar un nuevo producto</p>
+            </div>
+            
+            <form class="cliente-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="idProducto">ID Producto</label>
+                        <input type="number" id="idProducto" name="idProducto"  [(ngModel)]="Producto.id" required placeholder="Ej: 001">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre"  [(ngModel)]="Producto.nombre" required placeholder="Ingresa el nombre">
+                    </div>
+                </div>
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label for="cantidad">Cantidad</label>
+                        <input type="number" id="cantidad" name="cantidad"  [(ngModel)]="Producto.cantidad" required placeholder="Ingresa la cantidad">
+                    </div>
+                    <div class="form-group">
+                        <label for="color">Color</label>
+                        <input type="text" id="color" name="color" [(ngModel)]="Producto.color" required placeholder="Ingresa el color">
+                    </div>
+                    <div class="form-group">
+                        <label for="precio">Precio</label>
+                        <input type="number" id="precio"name="precio"  [(ngModel)]="Producto.precio" required placeholder="$15">
+                    </div>
+                    <div class="form-group">
+                        <label for="departamentoId">Departamento ID</label>
+                        <input type="number" id="departamentoId"name="departamentoId"  [(ngModel)]="Producto.id" required placeholder="Ej: 01">
+                    </div>
+                </div>
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label for="tiendaId">Tienda ID</label>
+                        <input type="number" id="tiendaId"name="tiendaId"  [(ngModel)]="Producto.tiendaId" required placeholder="Ingresa el tiendaId">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" (click)="btnGuardardProducto()">
+                        <span>✓ Guardar Producto</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>

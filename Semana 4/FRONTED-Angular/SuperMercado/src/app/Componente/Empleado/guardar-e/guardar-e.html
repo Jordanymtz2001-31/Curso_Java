@@ -1,1 +1,68 @@
-<p>guardar-e works!</p>
+    <div class="guardar-cliente-container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Nuevo Empleado</h1>
+                <p class="subtitle">Completa el formulario para registrar un nuevo empleado</p>
+            </div>
+            
+            <form class="cliente-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="idEmpleado">ID Empleado</label>
+                        <input type="number" id="idEmpleado" name="idEmpleado"  [(ngModel)]="Empleado.id" required placeholder="Ej: 001">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre"  [(ngModel)]="Empleado.nombre" required placeholder="Ingresa el nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidoP">Apellido Paterno</label>
+                        <input type="text" id="apellidoP" name="apellidoP"  [(ngModel)]="Empleado.apellidoP" required placeholder="Ingresa el apellido paterno">
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidoM">Apellido Materno</label>
+                        <input type="text" id="apellidoM" name="apellidoM" [(ngModel)]="Empleado.apellidoM" required placeholder="Ingresa apellido materno">
+                    </div>
+                </div>
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label for="edad">Edad</label>
+                        <input type="number" id="edad"name="edad"  [(ngModel)]="Empleado.edad" required placeholder="15">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="number" id="telefono"name="telefono"  [(ngModel)]="Empleado.telefono" required placeholder="Ej: 1234567890">
+                    </div>
+                </div>
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label>Puesto:</label>
+                            <select [(ngModel)]="Empleado.puesto" name="puesto" class="form-control"  required>
+                            <option value="">Selecciona un Puesto</option>
+                            <option value="GERENTE">GERENTE</option>
+                            <option value="SUBGERENTE">SUBGERENTE</option>
+                            <option value="LIDER">LIDER</option>
+                            <option value="AUXILIAR">AUXILIAR</option>
+                            </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="departamentoId">Departamento Id</label>
+                        <input type="number" id="departamentoId"name="departamentoId"  [(ngModel)]="Empleado.departamentoId" required placeholder="Ingresa el departamentoId">
+                    </div>
+                    <div class="form-group">
+                        <label for="tiendaId">Tienda Id</label>
+                        <input type="number" id="tiendaId"name="tiendaId"  [(ngModel)]="Empleado.tiendaId" required placeholder="Ingresa el tiendaId">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" (click)="btnGuardardEmpleado()">
+                        <span>✓ Guardar Empleado</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>

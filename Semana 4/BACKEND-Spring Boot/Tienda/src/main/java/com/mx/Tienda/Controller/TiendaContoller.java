@@ -2,11 +2,15 @@ package com.mx.Tienda.Controller;
 
 
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +24,7 @@ import com.mx.Tienda.Entity.Tienda;
 import com.mx.Tienda.Service.TiendaService;
 
 @RestController
-@CrossOrigin
+//@CrossOrigin
 @RequestMapping("/tiendas")
 public class TiendaContoller {
 	
@@ -33,32 +37,41 @@ public class TiendaContoller {
 		if (service.listarTiendas().isEmpty()) { //Si no hay tiendas registradas
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No hay tiendas registradas");
 		} else {
-			return ResponseEntity.status(HttpStatus.CREATED).body( service.listarTiendas());
+			return ResponseEntity.ok( service.listarTiendas());
 		}
 	}
 	
 	//Metodo para guardar una tienda
-	@PostMapping("/guardar")
-	public ResponseEntity<?> guardarTienda(@RequestBody Tienda tienda) {
+	//le dice a Spring Boot qué formato de respuesta va a devolver tu método (en este caso, JSON). 
+	//Sin esto, cuando devuelves un String
+	@PostMapping(value = "/guardar", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> guardarTienda(@RequestBody Tienda tienda) throws Exception {
 		//Metodo para guardar una tienda
 		try {
 			service.guardar(tienda);
-			return ResponseEntity.status(HttpStatus.CREATED).body("Tienda guardada correctamente");
-		} catch (Exception e) {
-			return ResponseEntity.ok("Ocurrio un error: " + e.getMessage());
-		}
+			Map<String, Object> success = Map.of(
+		            "message", "Tienda guardada correctamente",
+		            "tienda", tienda  // Devuelve la Tienda para Angular
+		    );
+			return ResponseEntity.ok(success); //Pasamos el mapa como cuerpo de la respuesta
+		} catch (IllegalArgumentException e) {
+			Map<String, String> error = Map.of("error", e.getMessage());
+	        return ResponseEntity.badRequest().body(error);  // Status 400 para errores
+		} 
 	}
-	
+	 
 	//Metodo para editar una tienda
-	@PutMapping("/editar")
-	public ResponseEntity<?> editarTienda(@RequestBody Tienda tienda) {
+	@PatchMapping("/editar")
+	public ResponseEntity<Map<String, String>> editarTienda(@RequestBody Tienda tienda) {
 		Tienda exisT = service.buscarTienda(tienda.getIdTienda());
 			if (exisT != null) {
-			service.editarTienda(tienda);
-			return ResponseEntity.status(HttpStatus.CREATED).body("Tienda editada correctamente");
-		} else {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("La tienda no existe");
-		}
+				service.editarTienda(tienda);
+				Map<String, String> response = Map.of("message", "Tienda editada correctamente");
+				return ResponseEntity.ok(response);  // JSON válido
+			}else {
+				Map<String, String> error = Map.of("error", "La tienda no existe");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error); // Status 404 para no encontrado
+			}
 	}
 	
 	//Metodo para eliminar una tienda
@@ -67,10 +80,10 @@ public class TiendaContoller {
 		Tienda exisT = service.buscarTienda(idTienda);
 		if (exisT != null) {
 			service.eliminarTienda(idTienda);
-			return ResponseEntity.status(HttpStatus.CREATED).body("Tienda eliminada correctamente");
+			return ResponseEntity.ok(Map.of("message", "Tienda eliminada correctamente")); 
 		} else {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("La tienda no existe");
-		}
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", "La tienda no existe"));
+		} 
 	}
 	
 	//Metodo para buscar una tienda por id

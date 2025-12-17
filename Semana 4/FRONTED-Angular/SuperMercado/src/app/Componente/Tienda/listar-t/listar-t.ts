@@ -28,7 +28,8 @@ export class ListarT implements OnInit {
       next: (data) => { //data es la respuesta del servidor
         this.tiendas = data; //Asignamos los datos a la variable tiendas
       },
-      error: (err) => { console.error('Error al cargar las tiendas', err);
+      error: (err) => { 
+        console.error('Error al cargar las tiendas', err);
       }
     })
   }
@@ -40,43 +41,45 @@ export class ListarT implements OnInit {
 
   //Metodo para eliminar una tienda
   btnEliminar(id: number){
-    Swal.fire({
-      title: '¿Estás seguro de eliminar esta tienda?',
-      text: "¡Esta acción no se puede deshacer!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Sí, eliminarla'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.servicio.eliminarTiendas(id).subscribe({
-          next: (data) => {
-            Swal.fire(
-              'Eliminada',
-              'La tienda ha sido eliminada correctamente',
-              'success'
-            );
-            this.ngOnInit(); //Recargamos la lista de tiendas despues de eliminar
-          },
-          error: (err) => {
-            Swal.fire(
-              'Error',
-              'Hubo un problema al eliminar la tienda',
-              'error'
-            );
-          }
-        });
-      }else if (result.isDismissed) {
-        Swal.fire({
-          title: 'Cancelado',
-          icon : 'info',
-          text: 'La tienda no ha sido eliminada',
-          showConfirmButton: false,
-          timer: 1500
-        });
-      }
-    });
-  }
-
+  Swal.fire({
+    title: '¿Estás seguro de eliminar esta tienda?',
+    text: "¡Esta acción no se puede deshacer!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sí, eliminarla'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.servicio.eliminarTiendas(id).subscribe({
+        next: (response) => {
+          // ← EXTRAE el STRING del objeto
+          const mensaje = response.body?.message || response.body || 'La tienda ha sido eliminada correctamente';
+          Swal.fire(
+            'Eliminada',
+            mensaje,  
+            'success'
+          );
+          this.ngOnInit(); 
+        },
+        error: (err) => {
+          const errorMsg = err.error?.error || err.error || 'Hubo un problema al eliminar la tienda';
+          Swal.fire(
+            'Error',
+            errorMsg,  
+            'error'
+          );
+        }
+      });
+    }else if (result.isDismissed) {
+      Swal.fire({
+      title: 'Cancelado',
+      icon : 'info',
+      text: 'La tienda no ha sido eliminado  ',
+      showConfirmButton: false,
+      timer: 1500
+      });
+    }
+  });
+}
 }

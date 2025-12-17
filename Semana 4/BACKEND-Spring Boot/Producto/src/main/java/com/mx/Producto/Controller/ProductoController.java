@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mx.Producto.Entidad.Producto;
 import com.mx.Producto.Service.ProductoService;
 
-@CrossOrigin // Permite solicitudes desde cualquier origen
+//@CrossOrigin // Permite solicitudes desde cualquier origen
 @RestController // Indica que esta clase es un controlador REST de Spring
 @RequestMapping("/productos") // Mapea las solicitudes HTTP a /productos
 public class ProductoController {

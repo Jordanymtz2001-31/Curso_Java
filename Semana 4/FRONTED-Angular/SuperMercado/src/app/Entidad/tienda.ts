@@ -4,6 +4,6 @@ export class Tienda {
     codigo!: string;
     nombre!: string;
     direccion!: string;
-    tipoTienda!: string;
+    tipo!: string;
     ciudad!: string;
 }

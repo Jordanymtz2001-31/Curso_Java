@@ -17,7 +17,7 @@ import com.mx.Empleado.Entidad.Empelado;
 import com.mx.Empleado.Services.EmpeladoServices;
 
 @RestController // Indica que esta clase es un controlador REST de Spring
-@CrossOrigin(origins = "*") // Permite solicitudes CORS desde cualquier origen
+//@CrossOrigin(origins = "*") // Permite solicitudes CORS desde cualquier origen
 @RequestMapping("/empleados") // Mapea las solicitudes HTTP a /empleados
 public class EmpleadoController {
 	

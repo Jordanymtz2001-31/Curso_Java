@@ -88,15 +88,15 @@ public class TiendaService {
 	}
 	
 	//Metodo para validar todas las validaciones
-	public void validarDatos(Tienda tienda) throws Exception {
+	public void validarDatos(Tienda tienda) throws IllegalArgumentException  {
 		if (existeCodigo(tienda.getCodigo())) {
-			throw new Exception("El codigo de la tienda ya existe");
+			throw new IllegalArgumentException ("El codigo de la tienda ya existe");
 		}
 		if (existeNombre(tienda.getNombre())) {
-			throw new Exception("El nombre de la tienda ya existe");
+			throw new IllegalArgumentException ("El nombre de la tienda ya existe");
 		}
 		if (existeDireccion(tienda.getDireccion())) {
-			throw new Exception("La direccion de la tienda ya existe");
+			throw new IllegalArgumentException ("La direccion de la tienda ya existe");
 		}
 	}
 	

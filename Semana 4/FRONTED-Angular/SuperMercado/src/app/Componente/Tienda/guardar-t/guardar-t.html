@@ -1,1 +1,48 @@
-<p>guardar-t works!</p>
+    <div class="guardar-cliente-container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Nueva Tienda</h1>
+                <p class="subtitle">Completa el formulario para registrar una nueva tienda</p>
+            </div>
+            
+            <form class="cliente-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre"  [(ngModel)]="Tienda.nombre" required placeholder="Ingresa el nombre">
+                    </div>
+                </div>
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label for="codigo">Codigo</label>
+                        <input type="text" id="codigo" name="codigo"  [(ngModel)]="Tienda.codigo" required placeholder="Ingresa el codigo">
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion">Direccion</label>
+                        <input type="text" id="direccion" name="direccion" [(ngModel)]="Tienda.direccion" required placeholder="Ingresa la direccion">
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de Tienda:</label>
+                            <select [(ngModel)]="Tienda.tipo" name="tipo" class="form-control" required>
+                            <option value="">Selecciona un tipo</option>
+                            <option value="SUPERMERCADO">Supermercado</option>
+                            <option value="MINISUPER">Minisuper</option>
+                            <option value="TIENDA">Tienda</option>
+                            <option value="KIOSCO">Kiosco</option>
+                            </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ciudad">Ciudad</label>
+                        <input type="text" id="ciudad" name="ciudad" [(ngModel)]="Tienda.ciudad" required placeholder="Ej: Mexico">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" (click)="btnGuardardTiendas()">
+                        <span>✓ Guardar Tienda</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+

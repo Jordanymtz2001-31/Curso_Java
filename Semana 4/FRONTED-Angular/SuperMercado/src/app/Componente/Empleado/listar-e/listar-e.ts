@@ -50,18 +50,20 @@ export class ListarE implements OnInit{
     }).then((result) => {
       if (result.isConfirmed) {
         this.servicio.eliminarEmpleados(id).subscribe({
-          next: (data) => {
+          next: (response) => {
+            const mensaje = response.body?.message || response.body || 'El empleado ha sido eliminada correctamente';
             Swal.fire(
               'Eliminada',
-              'El empleado ha sido eliminado correctamente',
+              mensaje,
               'success'
             );
             this.ngOnInit(); //Recargamos la lista de empleados despues de eliminar
           },
           error: (err) => {
+            const errorMsg = err.error?.error || err.error || 'Hubo un problema al eliminar el empleado';
             Swal.fire(
               'Error',
-              'Hubo un problema al eliminar el empleado',
+              errorMsg,
               'error'
             );
           }

@@ -48,18 +48,20 @@ export class ListarC implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.servicio.eliminarClientes(id).subscribe({
-          next: (data) => {
+          next: (response) => {
+            const mensaje = response.body?.message || response.body || 'El cliente ha sido eliminada correctamente';
             Swal.fire(
               'Eliminada',
-              'El cliente ha sido eliminado correctamente',
+              mensaje,
               'success'
             );
             this.ngOnInit(); //Recargamos la lista de clientes despues de eliminar
           },
           error: (err) => {
+            const errorMsg = err.error?.error || err.error || 'Hubo un problema al eliminar el cliente';
             Swal.fire(
               'Error',
-              'Hubo un problema al eliminar el cliente',
+              errorMsg,
               'error'
             );
           }

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mx.Proveedores.Entity.Proveedor;
 import com.mx.Proveedores.Service.ProveedorService;
 
-@CrossOrigin(origins = "*") // Permite solicitudes CORS desde cualquier origen
+//@CrossOrigin(origins = "*") // Permite solicitudes CORS desde cualquier origen
 @RestController // Indica que esta clase es un controlador REST de Spring
 @RequestMapping("/proveedores") // Mapea las solicitudes HTTP a /proveedores a este controlador
 public class ProveedorController {

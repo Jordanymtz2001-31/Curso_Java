@@ -1,1 +1,58 @@
-<p>guardar-pr works!</p>
+    <div class="guardar-cliente-container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Nuevo Proveedor</h1>
+                <p class="subtitle">Completa el formulario para registrar un nuevo proveedor</p>
+            </div>
+            
+            <form class="cliente-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="idProveedor">ID Proveedor</label>
+                        <input type="number" id="idProveedor" name="idProveedor"  [(ngModel)]="Proveedor.idProveedor" required placeholder="Ej: 001">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre"  [(ngModel)]="Proveedor.nombreProveedor" required placeholder="Ingresa el nombre">
+                    </div>
+                </div>
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label for="tipo">Tipo</label>
+                        <input type="text" id="tipo" name="tipo"  [(ngModel)]="Proveedor.tipo" required placeholder="Ingresa el tipo">
+                    </div>
+                    <div class="form-group">
+                        <label for="responsable">Responsable</label>
+                        <input type="text" id="responsable" name="responsable" [(ngModel)]="Proveedor.responsable" required placeholder="Ingresa el responsable">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Telefono</label>
+                        <input type="number" id="telefono" name="telefono"  [(ngModel)]="Proveedor.telefono" required placeholder="Ej. 2331086911">
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion">Direccion</label>
+                        <input type="text" id="direccion" name="direccion"  [(ngModel)]="Proveedor.direccion" required placeholder="Ingresa la direccion">
+                    </div>
+                </div>
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="email"  [(ngModel)]="Proveedor.email" required placeholder="Ingresa el email">
+                    </div>
+                    <div class="form-group">
+                        <label for="tiendaId">Tienda ID</label>
+                        <input type="number" id="tiendaId"name="tiendaId"  [(ngModel)]="Proveedor.tiendaId" required placeholder="Ingresa el tiendaId">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" (click)="btnGuardardProveedores()">
+                        <span>✓ Guardar Proveedor</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>

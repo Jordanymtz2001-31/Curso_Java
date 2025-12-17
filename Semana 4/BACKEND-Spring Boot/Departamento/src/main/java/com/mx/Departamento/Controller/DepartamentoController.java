@@ -21,7 +21,7 @@ import com.mx.Departamento.Entidad.Departamento;
 import com.mx.Departamento.Service.DepartamentoService;
 
 @RestController // Indica que esta clase es un controlador de Spring
-@CrossOrigin // Permite solicitudes CORS desde cualquier origen
+//@CrossOrigin // Permite solicitudes CORS desde cualquier origen
 @RequestMapping("/departamento") // Mapea las solicitudes HTTP a /departamento
 public class DepartamentoController {
 	

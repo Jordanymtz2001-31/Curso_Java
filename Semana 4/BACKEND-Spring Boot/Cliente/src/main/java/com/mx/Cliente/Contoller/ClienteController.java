@@ -21,7 +21,7 @@ import com.mx.Cliente.Entidad.Cliente;
 
 @RestController //Indica que es un controlador de Spring MVC
 @RequestMapping("/clientes") //Mapea las solicitudes HTTP a /clientes
-@CrossOrigin(origins = "*") //Permite solicitudes CORS desde cualquier origen
+//@CrossOrigin(origins = "*") //Permite solicitudes CORS desde cualquier origen
 public class ClienteController {
 	
 	@Autowired

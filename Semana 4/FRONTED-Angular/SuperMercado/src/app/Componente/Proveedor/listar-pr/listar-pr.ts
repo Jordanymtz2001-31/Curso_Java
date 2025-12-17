@@ -26,7 +26,8 @@ export class ListarPR implements OnInit {
         next: (data) => { //data es la respuesta del servidor
           this.proveedores = data; //Asignamos los datos a la variable tiendas
         },
-        error: (err) => { console.error('Error al cargar las proveedores', err);
+        error: (err) => { 
+          console.error('Error al cargar las proveedores', err);
         }
       })
     }
@@ -49,18 +50,21 @@ export class ListarPR implements OnInit {
       }).then((result) => {
         if (result.isConfirmed) {
           this.servicio.eliminarProveedores(id).subscribe({
-            next: (data) => {
+            next: (response) => {
+                // ← EXTRAE el STRING del objeto
+              const mensaje = response.body?.message || response.body || 'El proveedor ha sido eliminada correctamente';
               Swal.fire(
-                'Eliminado',
-                'El proveedor ha sido eliminado correctamente',
+                'Eliminada',
+                mensaje,  
                 'success'
               );
-              this.ngOnInit(); //Recargamos la lista de proveedores despues de eliminar
+              this.ngOnInit(); 
             },
             error: (err) => {
+              const errorMsg = err.error?.error || err.error || 'Hubo un problema al eliminar el Proveedor';
               Swal.fire(
                 'Error',
-                'Hubo un problema al eliminar el proveedor',
+                errorMsg,
                 'error'
               );
             }

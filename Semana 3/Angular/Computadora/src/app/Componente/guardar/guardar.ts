@@ -40,7 +40,7 @@ export class Guardar implements OnInit {
     //Una ves guardada la computadora, navegamos al componente listar
       this.router.navigate(['/lista']);
     }, 
-    error: (error) => {
+    error: (error) => { 
       Swal.fire({
         icon: 'error',
         title: 'Error al guardar la computadora',

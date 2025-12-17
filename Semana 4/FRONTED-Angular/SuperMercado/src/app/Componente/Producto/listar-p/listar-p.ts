@@ -49,18 +49,20 @@ export class ListarP implements OnInit {
       }).then((result) => {
         if (result.isConfirmed) {
           this.servicio.eliminarProductos(id).subscribe({
-            next: (data) => {
+            next: (response) => {
+              const mensaje = response.body?.message || response.body || 'El producto ha sido eliminada correctamente';
               Swal.fire(
                 'Eliminada',
-                'El producto ha sido eliminado correctamente',
+                mensaje,
                 'success'
               );
               this.ngOnInit(); //Recargamos la lista de productos despues de eliminar
             },
             error: (err) => {
+              const errorMsg = err.error?.error || err.error || 'Hubo un problema al eliminar el producto';
               Swal.fire(
                 'Error',
-                'Hubo un problema al eliminar el producto',
+                errorMsg,
                 'error'
               );
             }

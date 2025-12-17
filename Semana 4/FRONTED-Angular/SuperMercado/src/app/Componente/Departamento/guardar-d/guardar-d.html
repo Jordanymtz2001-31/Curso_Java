@@ -1,1 +1,56 @@
-<p>guardar-d works!</p>
+    <div class="guardar-cliente-container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Nuevo Departamento</h1>
+                <p class="subtitle">Completa el formulario para registrar un nuevo departamento</p>
+            </div>
+            
+            <form class="cliente-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="idDepartamento">ID Departamento</label>
+                        <input type="number" id="idDepartamento" name="idDepartamento"  [(ngModel)]="Departamento.idDepartamento" required placeholder="Ej: 001">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="codigo">Codigo</label>
+                        <input type="number" id="codigo" name="codigo"  [(ngModel)]="Departamento.codigo" required placeholder="Ingresa el codigo">
+                    </div>
+                </div>
+
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre"  [(ngModel)]="Departamento.nombre" required placeholder="Ingresa el nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripcion</label>
+                        <input type="text" id="descripcion" name="descripcion" [(ngModel)]="Departamento.descripcion" required placeholder="Ingresa descripcion">
+                    </div>
+                </div>
+
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="number" id="telefono"name="telefono"  [(ngModel)]="Departamento.telefono" required placeholder="Ej: 1234567890">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" id="email"name="email"  [(ngModel)]="Departamento.email" required placeholder="Ingresa el email">
+                    </div>
+                    <div class="form-group">
+                        <label for="tiendaId">Tienda Id</label>
+                        <input type="number" id="tiendaId"name="tiendaId"  [(ngModel)]="Departamento.tiendaId" required placeholder="Ingresa el tiendaId">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" (click)="btnGuardardDepartamento()">
+                        <span>✓ Guardar Departamento</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>

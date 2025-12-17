@@ -1,1 +1,52 @@
-<p>guardar-c works!</p>
+    <div class="guardar-cliente-container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Nuevo Cliente</h1>
+                <p class="subtitle">Completa el formulario para registrar un nuevo cliente</p>
+            </div>
+            
+            <form class="cliente-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="idCliente">ID Cliente</label>
+                        <input type="number" id="idCliente" name="idCliente"  [(ngModel)]="Cliente.idCliente" required placeholder="Ej: 001">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre"  [(ngModel)]="Cliente.nombre" required placeholder="Ingresa el nombre">
+                    </div>
+                </div>
+
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label for="apellidoP">Apellido Paterno</label>
+                        <input type="text" id="apellidoP"name="apellidoP"  [(ngModel)]="Cliente.apellidoP" required placeholder="Ingresa apellido paterno">
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidoM">Apellido Materno</label>
+                        <input type="text" id="apellidoM"name="apellidoM" [(ngModel)]="Cliente.apellidoM" required placeholder="Ingresa apellido materno">
+                    </div>
+                </div>
+
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="number" id="telefono"name="telefono"  [(ngModel)]="Cliente.telefono" required placeholder="Ej: 1234567890">
+                    </div>
+                    <div class="form-group">
+                        <label for="tiendaId">Tienda ID</label>
+                        <input type="text" id="tiendaId"name="tiendaId"  [(ngModel)]="Cliente.tiendaId" required placeholder="ID de la tienda">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" (click)="btnGuardarCliente()">
+                        <span>✓ Guardar Cliente</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
