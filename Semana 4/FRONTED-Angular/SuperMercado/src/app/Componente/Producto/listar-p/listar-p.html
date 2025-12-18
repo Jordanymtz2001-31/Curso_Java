@@ -29,7 +29,7 @@
                                 <td>{{producto.depaId}}</td>
                                 <td>{{producto.tiendaId}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning">EDITAR</button>
+                                    <button type="button" class="btn btn-warning" (click)="btnEditar(producto.id)">EDITAR</button>
                                     <button type="button" class="btn btn-danger" (click)="btnEliminar(producto.id)">ELIMINAR</button>
                                 </td>
                             </tr>

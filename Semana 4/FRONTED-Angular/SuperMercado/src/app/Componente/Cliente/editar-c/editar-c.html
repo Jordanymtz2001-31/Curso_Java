@@ -1,1 +1,48 @@
-<p>editar-c works!</p>
+    <div class="guardar-cliente-container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Editar Cliente</h1>
+                <p class="subtitle">Completa el formulario para editar el Cliente/p>
+            </div>
+            <form class="cliente-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="id">ID</label>
+                        <input type="number" id="id" name="id"  [(ngModel)]="cliente.idCliente" readonly>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre"  [(ngModel)]="cliente.nombre" required placeholder="Ingresa el nombre">
+                    </div>
+                </div>
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label for="apellidoP">Apellido Paterno</label>
+                        <input type="text" id="apellidoP" name="apellidoP"  [(ngModel)]="cliente.apellidoP" required placeholder="Ingresa el Apellido Paterno">
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidoM">Apellido Martinez</label>
+                        <input type="text" id="apellidoM" name="apellidoM"  [(ngModel)]="cliente.apellidoM" required placeholder="Ingresa el Apellido Materno">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Telefono</label>
+                        <input type="number" id="telefono" name="telefono" [(ngModel)]="cliente.telefono" required placeholder="Eje: 2331086911">
+                    </div>
+                    <div class="form-group">
+                        <label for="tiendaId">Tienda ID</label>
+                        <input type="number" id="tiendaId" name="tiendaId" [(ngModel)]="cliente.tiendaId" readonly>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" (click)="btnEditarCliente()">
+                        <span>✓ Editar Cliente</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+

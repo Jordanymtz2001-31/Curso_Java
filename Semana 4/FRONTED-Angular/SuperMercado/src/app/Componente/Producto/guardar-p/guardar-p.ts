@@ -30,7 +30,7 @@ export class GuardarP implements OnInit{
       next: (response: any) =>{
       Swal.fire({
         title: 'Guardado',
-        text: response.body.message || 'Productos guardada con éxito',
+        text: response.body.message || response.body || 'Productos guardada con éxito',
         icon: 'success',
         showConfirmButton: false
       }),

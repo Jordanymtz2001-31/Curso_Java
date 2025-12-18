@@ -93,17 +93,17 @@ export class Servidor {
   }
 
   editarProductos(producto: Producto): Observable<HttpResponse<Producto>> {
-    return this.http.patch<Producto>(this.url + 'productos/editar', producto, { observe: 'response' });
+    return this.http.patch<Producto>(this.url + 'productos/editar', producto, { observe: 'response', responseType: 'json' });
   }
 
   //Colocamos el void por que en el backend no nos regresa un cuerpo
   eliminarProductos(id: number): Observable<HttpResponse<any>> {
-    return this.http.delete<void>(this.url + 'productos/eliminar' + id, { observe: 'response' });
+    return this.http.delete<void>(this.url + 'productos/eliminar/' + id, { observe: 'response' });
   }
 
   //Metodo para buscar productos por id
   buscarProductoId(id: number): Observable<Producto> {
-    return this.http.get<Producto>(this.url + 'productos/buscar' + id);
+    return this.http.get<Producto>(this.url + 'productos/buscar/' + id);
   }
 
   //METODOS PARA CLIENTES--------------------------------------------------------------------------------

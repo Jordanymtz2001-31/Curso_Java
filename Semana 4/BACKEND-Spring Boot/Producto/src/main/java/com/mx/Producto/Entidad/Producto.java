@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity // Indica que esta clase es una entidad JPA
-@Table // Indica que esta clase se mapeará a una tabla en la base de datos
+@Table(name = "producto") // Indica que esta clase se mapeará a una tabla en la base de datos
 @Data // Genera automáticamente getters, setters, toString, equals y hashCode
 public class Producto {
 	

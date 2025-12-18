@@ -1,1 +1,51 @@
-<p>editar-p works!</p>
+    <div class="guardar-cliente-container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Editar Producto</h1>
+                <p class="subtitle">Completa el formulario para editar este Producto/p>
+            </div>
+            <form class="cliente-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="id">ID</label>
+                        <input type="number" id="id" name="id"  [(ngModel)]="producto.id" readonly>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre"  [(ngModel)]="producto.nombre" required placeholder="Ingresa el nombre">
+                    </div>
+                </div>
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label for="cantidad">Cantidad</label>
+                        <input type="number" id="cantidad" name="cantidad"  [(ngModel)]="producto.cantidad" required placeholder="Ingresa la Cantidad">
+                    </div>
+                    <div class="form-group">
+                        <label for="color">Color</label>
+                        <input type="text" id="color" name="color" [(ngModel)]="producto.color" required placeholder="Ingresa el Color">
+                    </div>
+                    <div class="form-group">
+                        <label for="precio">Precio</label>
+                        <input type="number" id="precio" name="precio" [(ngModel)]="producto.precio" required placeholder="Ingresa el Precio">
+                    </div>
+                    <div class="form-group">
+                        <label for="depaId">Departamento ID</label>
+                        <input type="number" id="depaId" name="depaId" [(ngModel)]="producto.depaId" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="tiendaId">Tienda ID</label>
+                        <input type="number" id="tiendaId" name="tiendaId" [(ngModel)]="producto.tiendaId" readonly>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" (click)="btnEditarProducto()">
+                        <span>✓ Editar Producto</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
