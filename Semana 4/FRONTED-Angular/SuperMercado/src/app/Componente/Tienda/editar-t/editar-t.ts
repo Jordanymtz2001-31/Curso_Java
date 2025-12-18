@@ -16,7 +16,7 @@ export class EditarT implements OnInit{
   // Creamos el constructor que inyecta el servicio Servidor
   constructor(private servicio: Servidor, private router: Router, private route: ActivatedRoute) { }
 
-  // Creamos la instancia de la entidad Clientes
+  
   tienda: Tienda = new Tienda(); //Intanciamos con Tienda
   loading = true; //Variable para indicar que si esta cargando
   error = '';
@@ -29,7 +29,7 @@ export class EditarT implements OnInit{
       if (id) {
         this.cargarTienda(id);
       } else {
-        this.error = 'ID de cliente no válido';
+        this.error = 'ID de la tienda no válido';
         this.loading = false;
       }
     })

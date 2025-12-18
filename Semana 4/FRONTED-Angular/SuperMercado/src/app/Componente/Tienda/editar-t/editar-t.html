@@ -1,46 +1,54 @@
-<div class="container py-5">
-    <div class="card shadow-lg border-0 rounded-3">
-        <div class="card-header bg-light text-center py-4">
-            <h2 class="fw-bold text-center m-0">Editar Tienda</h2>
-        </div>
-        <div class="card-body p-4">
-            <form>
-                <div class="mb-3">
-                    <label for="id" class="form-label fw-semibold">ID:</label>
-                    <input type="number" class="form-control form-control-lg shadow-sm" [(ngModel)]="tienda.idTienda" name="id" readonly>
+    <div class="guardar-cliente-container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Editar Tienda</h1>
+                <p class="subtitle">Completa el formulario para editar una tienda</p>
+            </div>
+            
+            <form class="cliente-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="id">ID</label>
+                        <input type="number" id="id" name="id"  [(ngModel)]="tienda.idTienda" readonly>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="codigo" class="form-label fw-semibold">Codigo:</label>
-                    <input type="text" class="form-control form-control-lg shadow-sm" [(ngModel)]="tienda.codigo" name="codigo">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre"  [(ngModel)]="tienda.nombre" required placeholder="Ingresa el nombre">
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="nombre" class="form-label fw-semibold">Nombre:</label>
-                    <input type="text" class="form-control form-control-lg shadow-sm" [(ngModel)]="tienda.nombre" name="nombre">
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label for="codigo">Codigo</label>
+                        <input type="text" id="codigo" name="codigo"  [(ngModel)]="tienda.codigo" required placeholder="Ingresa el codigo">
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion">Direccion</label>
+                        <input type="text" id="direccion" name="direccion" [(ngModel)]="tienda.direccion" required placeholder="Ingresa la direccion">
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de Tienda:</label>
+                            <select [(ngModel)]="tienda.tipo" name="tipo" class="form-control" required>
+                            <option value="">Selecciona un tipo</option>
+                            <option value="SUPERMERCADO">Supermercado</option>
+                            <option value="MINISUPER">Minisuper</option>
+                            <option value="TIENDA">Tienda</option>
+                            <option value="KIOSCO">Kiosco</option>
+                            </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ciudad">Ciudad</label>
+                        <input type="text" id="ciudad" name="ciudad" [(ngModel)]="tienda.ciudad" required placeholder="Ej: Mexico">
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="direccion" class="form-label fw-semibold">direccion:</label>
-                    <input type="text" class="form-control form-control-lg shadow-sm" [(ngModel)]="tienda.direccion" name="direccion">
-                </div>
-                <div class="form-group">
-                    <label>Tipo de Tienda:</label>
-                        <select [(ngModel)]="tienda.tipo" name="tipo" class="form-control" required>
-                        <option value="">Selecciona un tipo</option>
-                        <option value="SUPERMERCADO">Supermercado</option>
-                        <option value="MINISUPER">Minisuper</option>
-                        <option value="TIENDA">Tienda</option>
-                        <option value="KIOSCO">Kiosco</option>
-                        </select>
-                </div>
-                <div class="mb-3">
-                    <label for="ciudad" class="form-label fw-semibold">Ciudad:</label>
-                    <input type="text" class="form-control form-control-lg shadow-sm" [(ngModel)]="tienda.ciudad" name="ciudad" readonly>
-                </div>
-                <div class="d-flex justify-content-center mt-3">
-                    <button type="button" class="btn btn-outline-warning shadow-sm px-4" (click)="btnEditarTiendas()">
-                        <i class="bi bi-pencil-square me-2"></i>Editar</button>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" (click)="btnEditarTiendas()">
+                        <span>✓ Guardar Tienda</span>
+                    </button>
                 </div>
             </form>
         </div>
     </div>
-</div>
 
