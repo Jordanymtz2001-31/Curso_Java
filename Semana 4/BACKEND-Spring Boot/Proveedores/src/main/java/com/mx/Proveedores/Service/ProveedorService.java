@@ -3,6 +3,7 @@ package com.mx.Proveedores.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -17,34 +18,55 @@ public class ProveedorService {
 	private ProveedorRepo dao;
 
 	//Metodo para validar los campos unicos antes de guardar un proveedor
-	public void ValidarCampos(Proveedor proveedor) throws Exception {
+	public void ValidarCampos(Proveedor proveedor) throws IllegalArgumentException {
 
 		if(existeNombreProveedor(proveedor.getNombreProveedor())) {
-			throw new Exception("El nombre del proveedor ya existe");
+			throw new IllegalArgumentException("El nombre del proveedor ya existe");
 		}
 
 		if(existeDireccion(proveedor.getDireccion())) {
-			throw new Exception("La direccion del proveedor ya existe");
+			throw new IllegalArgumentException("La direccion del proveedor ya existe");
 		}
 
 		if(existeEmail(proveedor.getEmail())) {
-			throw new Exception("El email del proveedor ya existe");
+			throw new IllegalArgumentException("El email del proveedor ya existe");
 		}
 
 		if(existeTelefono(proveedor.getTelefono())) {
-			throw new Exception("El telefono del proveedor ya existe");
+			throw new IllegalArgumentException("El telefono del proveedor ya existe");
 		}
+	}
+	
+	private String mensajeError(DataIntegrityViolationException e) {
+		if(e.getCause() == null) {
+			return "Error al registrar la el proveedor";
+		}
+		
+		String mensaje = e.getRootCause().getMessage().toLowerCase();
+		
+		//Comparamos los valores del usuario con los que estan en la base de datos
+		if(mensaje.contains("nombre") || mensaje.contains("nombre")) {
+			return "El nombre del Proveedor ya existe";
+		}else if(mensaje.contains("email") || mensaje.contains("email")) {
+			return "El email del Proveedor ya existe";
+		}else if(mensaje.contains("direccion") || mensaje.contains("direccion")) {
+			return "La direccion del Proveedor ya existe";
+		}else if(mensaje.contains("telefono") || mensaje.contains("telefono")) {
+			return "El Telefono del Proveedor ya existe";
+		}
+		
+		return "Los datos contienen informacion duplicada o invalida";
 	}
 
 	//Metodo para guardar un proveedor
-	public void guardar(Proveedor proveedor) throws Exception  {
+	public void guardar(Proveedor proveedor) {
 		ValidarCampos(proveedor); // Validar los campos unicos antes de guardar
 		try {
 			dao.save(proveedor);
-		} catch (Exception e) {
-			// Manejar la excepción según sea necesario
-			throw new RuntimeException("Error al guardar el proveedor: " + e.getMessage(), e);
+		} catch (DataIntegrityViolationException e) {
+			throw new IllegalArgumentException(mensajeError(e));
 		}
+		
 	}
 
 	//Metodo para editar un proveedor

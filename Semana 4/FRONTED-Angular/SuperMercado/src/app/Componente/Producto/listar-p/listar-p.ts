@@ -13,12 +13,32 @@ import Swal from 'sweetalert2';
 })
 export class ListarP implements OnInit {
 
+   //Set para controlar múltiples menús abiertos simultáneamente
+  //Puede contener varios valores de tipo string que representan los menús abiertos
+  protected openMenus = new Set<string>();
+
   //Creamos nuestro contructor y le inyectamos
   constructor(private router: Router, private servicio : Servidor) {}
 
   //Creamos variables para almacenar los datos que vienen del servidor
     productos!: Producto[];
     producto = new Producto(); //Inicializamos un objeto producto para usarlor
+
+    //Método para alternar menús
+  //Si ago clic en un menú y está abierto, lo cierra
+  //Si ago clic en un menú y está cerrado, lo abre
+  toggleMenu(menu: string) {
+    if (this.openMenus.has(menu)) { //Si el menu esta abierto
+      this.openMenus.delete(menu); //Lo cerramos
+    } else {
+      this.openMenus.add(menu); //Lo abrimos
+    }
+  }
+
+  //Método para verificar si un menú está abierto
+  isMenuOpen(menu: string): boolean {
+    return this.openMenus.has(menu);
+  }
   
     //Creamos el metodo ngOnInit para cargar los datos al inicializar el componente
     ngOnInit(): void{

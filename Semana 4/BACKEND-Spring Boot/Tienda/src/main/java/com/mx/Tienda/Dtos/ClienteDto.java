@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class ClienteDto {
 	
-	private Integer idCliente;
+	private Integer id;
 	private String nombre;
 	private String apellidoP;
 	private String apellidoM;

@@ -8,7 +8,6 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">ID PROVEEDOR</th>
                                 <th scope="col">NOMBRE</th>
                                 <th scope="col">TIPO</th>
@@ -17,10 +16,11 @@
                                 <th scope="col">DIRECCION</th>
                                 <th scope="col">EMAIL</th>
                                 <th scope="col">Tienda ID</th>
+                                <th scope="col">ACCIONES</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @for (proveedores of proveedores; track proveedor.idProveedor) {
+                            @for (proveedor of proveedores; track proveedor.idProveedor) {
                             <tr>
                                 <td>{{proveedor.idProveedor}}</td>
                                 <td>{{proveedor.nombreProveedor}}</td>
@@ -31,7 +31,7 @@
                                 <td>{{proveedor.email}}</td>
                                 <td>{{proveedor.tiendaId}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning">EDITAR</button>
+                                    <button type="button" class="btn btn-warning" (click)="btnEditar(proveedor.idProveedor)">EDITAR</button>
                                     <button type="button" class="btn btn-danger" (click)="btnEliminar(proveedor.idProveedor)">ELIMINAR</button>
                                 </td>
                             </tr>

@@ -97,7 +97,7 @@ public class TestMockRescontroller {
 		Cliente cliente = new Cliente(1,"juan","martinez", "jimenez", 25, 2331086955L, 1);
 		
 		//Simulacion del servicio para verificar que el cliente existe y colocamos con thenReturn el cliente existente
-		when(service.buscar(cliente.getIdCliente())).thenReturn(cliente);
+		when(service.buscar(cliente.getId())).thenReturn(cliente);
 		
 		//Configuramos el mock del método editar (usamos doNothing() para metodos void)
 		doNothing().when(service).editar(any(Cliente.class));
@@ -123,14 +123,14 @@ public class TestMockRescontroller {
 		Cliente cliente = new Cliente(1,"juan","martinez", "jimenez", 25, 2331086955L, 1);
 		
 		//Simulacion del servicio para verificar que el cliente existe y colocamos con thenReturn el cliente existente
-		when(service.buscar(cliente.getIdCliente())).thenReturn(cliente);
+		when(service.buscar(cliente.getId())).thenReturn(cliente);
 		
 		//Convertir el cliente a formato JSON esperado
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonEsperado = mapper.writeValueAsString(cliente);
 		
 		// Realizar una solicitud GET al endpoint /clientes/buscar/{idCliente} y verificar con los resultados esperados
-		this.mockMvc.perform(get("/clientes/buscar/{idCliente}", cliente.getIdCliente()))
+		this.mockMvc.perform(get("/clientes/buscar/{idCliente}", cliente.getId()))
 			.andDo(print())
 			.andExpect(status().isOk()) //Aqui esperamos un estado 200 OK del servidor
 			.andExpect(content().json(jsonEsperado));  //Aqui si esperamos al cliente que se esta buscando en formato JSON
@@ -144,13 +144,13 @@ public class TestMockRescontroller {
 		Cliente cliente = new Cliente(1,"juan","martinez", "jimenez", 25, 2331086955L, 1);
 		
 		//Simulacion del servicio para verificar que el cliente existe y colocamos con thenReturn el cliente existente
-		when(service.buscar(cliente.getIdCliente())).thenReturn(cliente);
+		when(service.buscar(cliente.getId())).thenReturn(cliente);
 		
 		//Configuramos el mock del método eliminar (usamos doNothing() para metodos void)
-		doNothing().when(service).eliminar(cliente.getIdCliente());
+		doNothing().when(service).eliminar(cliente.getId());
 		
 		// Realizar una solicitud GET al endpoint /clientes/eliminar/{idCliente} y verificar con los resultados esperados
-		this.mockMvc.perform(delete("/clientes/eliminar/{idCliente}", cliente.getIdCliente()))
+		this.mockMvc.perform(delete("/clientes/eliminar/{idCliente}", cliente.getId()))
 			.andDo(print())
 			.andExpect(status().isOk()) //Aqui esperamos un estado 200 OK del servidor
 			.andExpect(content().string("Eliminado"));  //Aqui esperamos este mensaje en la respuesta del servidor

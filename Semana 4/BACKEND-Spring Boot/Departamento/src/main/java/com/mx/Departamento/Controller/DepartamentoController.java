@@ -1,6 +1,8 @@
 package com.mx.Departamento.Controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,10 +11,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.mx.Departamento.Dto.EmpleadoDto;
@@ -41,21 +43,30 @@ public class DepartamentoController {
 	
 	//Metodo para guardar
 	@PostMapping("/guardar")
-	public ResponseEntity<?> guardar(@RequestBody Departamento departamento){
+	public ResponseEntity<Map<String, String>> guardar(@RequestBody Departamento departamento){
 		servicio.guardar(departamento);
-		return ResponseEntity.ok("Departamento guardado correctamente");
+		return ResponseEntity.status(201).body(Map.of("message", "Departamento guardado con éxito"));
 	}
 	
 	//Metodo para editar
-	@PutMapping("/editar")
-	public ResponseEntity<?> editar(@RequestBody Departamento departamento){
-		Departamento dep = servicio.buscar(departamento.getIdDepartamento());
-		if(dep != null) {
-			servicio.editar(departamento);
-			return ResponseEntity.ok("Departamento editado correctamente");
-			}else {
-				return ResponseEntity.ok("El departamento no existe");
-			}
+	@PatchMapping("/editar")
+	public ResponseEntity<Map<String, String>> editar(@RequestBody Departamento departamento){
+		Map<String, String> response = new HashMap<>(); //Crea un mapa para la respuesta
+		try {
+			Departamento dep = servicio.buscar(departamento.getIdDepartamento());
+			if(dep != null) {
+				servicio.editar(departamento);
+				response.put("Mensaje", "Departamento editado Correctamente");
+				return ResponseEntity.status(200).body(response);
+				}else {
+					response.put("Error", "El Departamento no existe");
+					return ResponseEntity.status(404).body(response);
+				}
+		}catch (Exception e){
+			Map<String, String> error = Map.of("error al editar", e.getMessage());
+	        return ResponseEntity.badRequest().body(error);  // Status 400 para errores
+		}
+		
 	}
 	
 	//Metodo para eliminar
@@ -64,9 +75,9 @@ public class DepartamentoController {
 		Departamento dep = servicio.buscar(idDepartamento);
 		if(dep != null) {
 			servicio.eliminar(idDepartamento);
-			return ResponseEntity.ok("Departamento eliminado correctamente");
+			return ResponseEntity.ok(Map.of("message", "Departamento eliminado correctamente")); 
 			}else {
-				return ResponseEntity.ok("El departamento no existe");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", "El Departamento no existe"));
 			}
 	}
 	

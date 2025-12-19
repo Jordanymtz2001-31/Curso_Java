@@ -8,27 +8,27 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">ID CLIENTE</th>
-                                <th scope="col">NOMBRE/th>
+                                <th scope="col">NOMBRE</th>
                                 <th scope="col">APELLIDO P</th>
                                 <th scope="col">APELLIDO M</th>
                                 <th scope="col">TELEFONO</th>
                                 <th scope="col">TIENDA ID</th>
+                                <th scope="col">ACCIONES</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @for (cliente of clientes; track cliente.idCliente) {
+                            @for (cliente of clientes; track cliente.id) {
                             <tr>
-                                <td>{{cliente.idCliente}}</td>
+                                <td>{{cliente.id}}</td>
                                 <td>{{cliente.nombre}}</td>
                                 <td>{{cliente.apellidoP}}</td>
                                 <td>{{cliente.apellidoM}}</td>
                                 <td>{{cliente.telefono}}</td>
                                 <td>{{cliente.tiendaId}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning">EDITAR</button>
-                                    <button type="button" class="btn btn-danger" (click)="btnEliminar(cliente.idCliente)">ELIMINAR</button>
+                                    <button type="button" class="btn btn-warning" (click)="btnEditar(cliente.id)">EDITAR</button>
+                                    <button type="button" class="btn btn-danger" (click)="btnEliminar(cliente.id)">ELIMINAR</button>
                                 </td>
                             </tr>
                             } @empty {

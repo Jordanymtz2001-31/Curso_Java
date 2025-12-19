@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Servidor } from '../../../Servidor/servidor';
-import { Proveedores } from '../../../Entidad/proveedores';
 import Swal from 'sweetalert2';
+import { Proveedor } from '../../../Entidad/proveedor';
 
 @Component({
   selector: 'app-guardar-pr',
@@ -16,8 +16,8 @@ export class GuardarPR implements OnInit{
   //Creamos un contructor para inicializar con sus inyecciones
   constructor (private router: Router, private service: Servidor) { }
 
-  Proveedor: Proveedores = new Proveedores() //Intancia de Proveedor
-  Proveedores: Proveedores[] = [] //Creamos una lista para almacenar los proveedores
+  Proveedor: Proveedor = new Proveedor() //Intancia de Proveedor
+  Proveedores: Proveedor[] = [] //Creamos una lista para almacenar los proveedores
 
   //Metodo de OnInit
   ngOnInit(): void {
@@ -26,9 +26,11 @@ export class GuardarPR implements OnInit{
   
   //Boton de Guardar
   btnGuardardProveedores(): void{
+    console.log('JSON ENVIADO:', JSON.stringify(Proveedor, null, 2));
     this.service.guardarProveedores(this.Proveedor).subscribe({
       next: (response: any) =>{ //Colocamos any para capturar todo tipo de respuestas
-      Swal.fire({
+        console.log('ÉXITO:', response.body);
+        Swal.fire({
         title: 'Guardado...✓',
         text: response.body.message || 'Proveedor guardada con éxito',
         icon: 'success',

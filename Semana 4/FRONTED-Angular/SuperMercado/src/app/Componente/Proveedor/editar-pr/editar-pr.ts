@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Servidor } from '../../../Servidor/servidor';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Proveedores } from '../../../Entidad/proveedores';
+import { Proveedor } from '../../../Entidad/proveedor';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,7 +17,7 @@ export class EditarPR implements OnInit{
     constructor(private servicio: Servidor, private router: Router, private route: ActivatedRoute) { }
   
     // Creamos la instancia de la entidad Clientes
-    proveedor: Proveedores = new Proveedores(); //Intanciamos con Tienda
+    proveedor: Proveedor = new Proveedor(); //Intanciamos con Tienda
     loading = true; //Variable para indicar que si esta cargando
     error = '';
   

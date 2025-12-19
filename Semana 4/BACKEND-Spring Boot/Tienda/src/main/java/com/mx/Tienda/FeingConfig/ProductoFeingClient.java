@@ -10,7 +10,7 @@ import com.mx.Tienda.Dtos.ProductoDto;
 
 //@Anotacion que indica que esta interfaz es un cliente Feign para comunicarse con otro servicio
 //Una de las dos formas en que el cliente puede comunicarse con el servicio 
-@FeignClient(name = "Producto", url = "http://localhost:8002/empleados")
+@FeignClient(name = "Producto", url = "http://localhost:8002/productos")
 public interface ProductoFeingClient {
 	
 	//Colocamos los metodos que necesitamos para comunicarnos con el servicio de Producto

@@ -68,6 +68,7 @@ public class DepartamentoService {
 		//Depende del Id del empleaso se llama (todos los atributos de empelado) se guarda a EmpleadoDto
 		List<ProductoDto> prods = restTemplate.getForObject("http://localhost:8002/productos/departamento/"+ departamentoId, List.class);
 		return prods;
+		
 	}
 
 }

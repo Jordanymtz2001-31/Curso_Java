@@ -8,14 +8,14 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">ID DEPARTAMENTO</th>
+                                <th scope="col">ID</th>
                                 <th scope="col">CODIGO</th>
                                 <th scope="col">NOMBRE</th>
                                 <th scope="col">DESCRIPCION</th>
                                 <th scope="col">TELEFONO</th>
                                 <th scope="col">EMAIL</th>
                                 <th scope="col">TIENDA ID</th>
+                                <th scope="col">MAS</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,8 +29,25 @@
                                 <td>{{departamento.email}}</td>
                                 <td>{{departamento.tiendaId}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning">EDITAR</button>
-                                    <button type="button" class="btn btn-danger" (click)="btnEliminar(departamento.idDepartamento)">ELIMINAR</button>
+                                    <div class="nav-item dropdown">
+                                        <button class="nav-link dropdown-toggle" type="button" (click)="toggleMenu('acciones-' + departamento.idDepartamento)">
+                                            Opciones
+                                        </button>
+                                        <div class="dropdown-menu" [class.show]="isMenuOpen('acciones-' + departamento.idDepartamento)">
+                                            <a class="dropdown-item" (click)="btnEditar(departamento.idDepartamento)">
+                                                <span class="icon">✏️</span> Editar
+                                            </a>
+                                            <a class="dropdown-item" (click)="btnEliminar(departamento.idDepartamento)">
+                                                <span class="icon">🗑️</span> Eliminar
+                                            </a>
+                                            <a class="dropdown-item" (click)="btnListProductos(departamento.idDepartamento)">
+                                                <span class="icon">📦</span> Productos del Departamento
+                                            </a>
+                                            <a class="dropdown-item" (click)="btnListEmpleados(departamento.idDepartamento)">
+                                                <span class="icon">👨‍💼</span> Empleados del Departamento
+                                            </a>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                             } @empty {

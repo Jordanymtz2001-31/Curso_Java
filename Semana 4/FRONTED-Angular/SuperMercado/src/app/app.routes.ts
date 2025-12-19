@@ -19,6 +19,7 @@ import { EditarD } from './Componente/Departamento/editar-d/editar-d';
 import { EditarE } from './Componente/Empleado/editar-e/editar-e';
 import { ListarDetallesT } from './Componente/Tienda/listar-detalles-t/listar-detalles-t';
 import { DetalleProducto } from './Componente/Departamento/detalle-producto/detalle-producto';
+import { DetalleEmpleado } from './Componente/Departamento/detalle-empleado/detalle-empleado';
 
 export const routes: Routes = [
 
@@ -50,9 +51,9 @@ export const routes: Routes = [
     {path: 'editar-proveedores/:id', component: EditarPR},
 
     //DETALLES-----------------------------------------------------------------------------------
-    {path: 'detalles-tiendas', component: ListarDetallesT},
-    {path: 'detalles-depaProduc', component: DetalleProducto},
-    {path: 'detalles-depaEmple', component: DetalleProducto},
+    {path: 'detalles-tiendas/:id', component: ListarDetallesT},
+    {path: 'detalles-depaProduc/:id', component: DetalleProducto},
+    {path: 'detalles-depaEmple/:id', component: DetalleEmpleado},
 
 
 ];

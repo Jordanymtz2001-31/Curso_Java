@@ -8,14 +8,14 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">ID PRODUCTOS</th>
+                                <th scope="col">ID</th>
                                 <th scope="col">NOMBRE</th>
                                 <th scope="col">CANTIDAD</th>
                                 <th scope="col">COLOR</th>
                                 <th scope="col">PRECIO</th>
                                 <th scope="col">DEPARTAMENTO ID</th>
                                 <th scope="col">TIENDA ID</th>
+                                <th scope="col">ACCIONES</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -25,19 +25,28 @@
                                 <td>{{producto.nombre}}</td>
                                 <td>{{producto.cantidad}}</td>
                                 <td>{{producto.color}}</td>
-                                <td>{{producto.precio}}</td>
+                                <td>${{producto.precio}}</td>
                                 <td>{{producto.depaId}}</td>
                                 <td>{{producto.tiendaId}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning" (click)="btnEditar(producto.id)">EDITAR</button>
-                                    <button type="button" class="btn btn-danger" (click)="btnEliminar(producto.id)">ELIMINAR</button>
+                                    <div class="nav-item dropdown">
+                                        <button class="nav-link dropdown-toggle" type="button" (click)="toggleMenu('acciones-' + producto.id)">
+                                            Opciones
+                                        </button>
+                                        <div class="dropdown-menu" [class.show]="isMenuOpen('acciones-' + producto.id)">
+                                            <a class="dropdown-item" (click)="btnEditar(producto.id)">
+                                                <span class="icon">✏️</span> Editar
+                                            </a>
+                                            <a class="dropdown-item" (click)="btnEliminar(producto.id)">
+                                                <span class="icon">🗑️</span> Eliminar
+                                            </a>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                             } @empty {
                             <td colspan="5" style="text-align: center;">No existen registros</td>
                             }
-
-
                         </tbody>
                     </table>
                 </div>

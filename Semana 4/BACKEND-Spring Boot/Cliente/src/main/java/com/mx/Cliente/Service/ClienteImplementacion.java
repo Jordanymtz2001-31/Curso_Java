@@ -29,19 +29,19 @@ public class ClienteImplementacion implements ClienteServicio {
 	}
 
 	@Override
-	public void eliminar(Integer idCliente) {
-		dao.deleteById(idCliente);
+	public void eliminar(Integer id) {
+		dao.deleteById(id);
 		
 	}
 
 	@Override
-	public Cliente buscar(Integer idCliente) {
-		return dao.findById(idCliente).orElse(null);
+	public Cliente buscar(Integer id) {
+		return dao.findById(id).orElse(null);
 	}
 
 	@Override
 	public List<Cliente> listar() {
-		return dao.findAll(Sort.by(Sort.Direction.ASC, "idCliente"));
+		return dao.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
 	
 	//Metodos de si existe cliente

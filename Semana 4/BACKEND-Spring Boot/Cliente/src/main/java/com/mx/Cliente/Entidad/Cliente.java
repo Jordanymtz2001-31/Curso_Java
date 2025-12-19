@@ -28,7 +28,7 @@ public class Cliente {
 	@Id // Indica que este campo es la clave primaria
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID_CLIENTE")
-	private Integer idCliente;
+	private Integer id;
 	private String nombre;
 	
 	@Column(name="APELLIDO_P")
@@ -45,15 +45,13 @@ public class Cliente {
 	
 	
 	//Constructor sin idCliente para usarlo en pruebas y al guardar nuevos clientes
-	public Cliente(String nombre, String apellidoP, String apellidoM, Integer edad, Long telefono, Integer tiendaId) {
-	
-		this.nombre = nombre;
-		this.apellidoP = apellidoP;
-		this.apellidoM = apellidoM;
-		this.edad = edad;
-		this.telefono = telefono;
-		this.tiendaId = tiendaId;
-	}
+	/*
+	 * public Cliente(String nombre, String apellidoP, String apellidoM, Integer
+	 * edad, Long telefono, Integer tiendaId) {
+	 * 
+	 * this.nombre = nombre; this.apellidoP = apellidoP; this.apellidoM = apellidoM;
+	 * this.edad = edad; this.telefono = telefono; this.tiendaId = tiendaId; }
+	 */
 	
 	
 	

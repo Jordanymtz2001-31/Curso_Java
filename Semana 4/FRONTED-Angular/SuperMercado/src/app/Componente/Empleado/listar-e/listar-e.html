@@ -8,8 +8,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">ID EMPLEADO/th>
+                                <th scope="col">ID EMPLEADO</th>
                                 <th scope="col">NOMBRE</th>
                                 <th scope="col">APELLIDO P</th>
                                 <th scope="col">APELLIDO M</th>
@@ -18,6 +17,7 @@
                                 <th scope="col">PUESTO</th>
                                 <th scope="col">DEPARTAMENTO ID</th>
                                 <th scope="col">TIENDA ID</th>
+                                <th scope="col">ACCIONES</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,15 +33,24 @@
                                 <td>{{empleado.departamentoId}}</td>
                                 <td>{{empleado.tiendaId}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning">EDITAR</button>
-                                    <button type="button" class="btn btn-danger" (click)="btnEliminar(empleado.id)">ELIMINAR</button>
+                                    <div class="nav-item dropdown">
+                                        <button class="nav-link dropdown-toggle" type="button" (click)="toggleMenu('acciones-' + empleado.id)">
+                                            Opciones
+                                        </button>
+                                        <div class="dropdown-menu" [class.show]="isMenuOpen('acciones-' + empleado.id)">
+                                            <a class="dropdown-item" (click)="btnEditar(empleado.id)">
+                                                <span class="icon">✏️</span> Editar
+                                            </a>
+                                            <a class="dropdown-item" (click)="btnEliminar(empleado.id)">
+                                                <span class="icon">🗑️</span> Eliminar
+                                            </a>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                             } @empty {
                             <td colspan="5" style="text-align: center;">No existen registros</td>
                             }
-
-
                         </tbody>
                     </table>
                 </div>

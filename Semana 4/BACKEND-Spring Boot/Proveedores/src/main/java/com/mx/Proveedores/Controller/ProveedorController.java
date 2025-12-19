@@ -1,11 +1,16 @@
 package com.mx.Proveedores.Controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,29 +40,38 @@ public class ProveedorController {
 	}
 
 	//Metodo de guardar un proveedor
-	@PostMapping("/guardar")
-	public ResponseEntity<?> guardarProveedor(@RequestBody Proveedor proveedor){
+	@PostMapping(value = "/guardar", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> guardarProveedor(@RequestBody Proveedor proveedor) {
 		try {
 			dao.guardar(proveedor);
-			return ResponseEntity.status(HttpStatus.CREATED).body("Proveedor guardado correctamente");
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ocurrio un error: " + e.getMessage());
-		}
+			Map<String, Object> success = Map.of(
+		            "message", "Proveedor guardado correctamente",
+		            "proveedor", proveedor  // Devuelve la Tienda para Angular
+		    );
+			return ResponseEntity.ok(success); //Pasamos el mapa como cuerpo de la respuesta
+		} catch (IllegalArgumentException e) {
+			Map<String, String> error = Map.of("error", e.getMessage());
+	        return ResponseEntity.badRequest().body(error);  // Status 400 para errores
+		} 
+		
 	}
 	
 	//Metodo de editar un proveedor
-	@PostMapping("/editar")
-	public ResponseEntity<?> editarProveedor(@RequestBody Proveedor proveedor){
+	@PatchMapping("/editar")
+	public ResponseEntity<Map<String, String>> editarProveedor(@RequestBody Proveedor proveedor){
+		Map<String, String> response = new HashMap<>(); //Crea un mapa para la respuesta
 		try {
 			Proveedor existe = dao.buscar(proveedor.getIdProveedor());
 			if (existe == null) {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Proveedor no encontrado");
+				response.put("Eror", "El Proveedor no existe"); //En el mapa agregamos un mensaje
+				return ResponseEntity.status(404).body(response); //Retornamos el mapa con un estatus y un mensaje
 			}else {
-				dao.editar(proveedor);
-				return ResponseEntity.status(HttpStatus.OK).body("Proveedor editado correctamente");
+				response.put("mensaje", "Provedor editado con exito");
+				return ResponseEntity.status(200).body(response);
 			}
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ocurrio un error: " + e.getMessage());
+			Map<String, String> error = Map.of("error", e.getMessage());
+	        return ResponseEntity.badRequest().body(error);  // Status 400 para errores
 		}
 
 	}
@@ -68,13 +82,14 @@ public class ProveedorController {
 		try {
 			Proveedor existe = dao.buscar(idProveedor.getIdProveedor());
 			if (existe == null) {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Proveedor no encontrado");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", "El Proveedor no existe"));
 				}else {
 					dao.eliminar(idProveedor.getIdProveedor());
-					return ResponseEntity.status(HttpStatus.OK).body("Proveedor eliminado correctamente");
+					return ResponseEntity.ok(Map.of("message", "Proveedor elimonado correctamente")); 
 				}
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ocurrio un error" + e.getMessage());
+			Map<String, String> error = Map.of("error", e.getMessage());
+	        return ResponseEntity.badRequest().body(error);  // Status 400 para errores
 		}
 	}
 	

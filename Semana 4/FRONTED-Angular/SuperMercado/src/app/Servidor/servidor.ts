@@ -6,7 +6,7 @@ import { Producto } from '../Entidad/producto';
 import { Cliente } from '../Entidad/cliente';
 import { Departamento } from '../Entidad/departamento';
 import { Empleado } from '../Entidad/empleado';
-import { Proveedores } from '../Entidad/proveedores';
+import { Proveedor } from '../Entidad/proveedor';
 
 @Injectable({
   providedIn: 'root',
@@ -57,28 +57,28 @@ export class Servidor {
   }
 
   //Metodo para listar departamentos por tienda
-  listarDepartamentosTienda(id: number): Observable<Tienda[]> {
-    return this.http.get<Tienda[]>(this.url + 'tiendas/departamentos' + id);
+  listarDepartamentosTienda(id: number): Observable<any> {
+    return this.http.get<any>(this.url + 'tiendas/departamentos/' + id);
   }
 
   //Metodo para listar empleados por tienda
-  listarEmpleadosTienda(id: number): Observable<Tienda[]> {
-    return this.http.get<Tienda[]>(this.url + 'tiendas/empleados' + id);
+  listarEmpleadosTienda(id: number): Observable<any> {
+    return this.http.get<any>(this.url + 'tiendas/empleados/' + id);
   }
 
   //Metodo para listar clientes por tienda
-  listarClientesTienda(id: number): Observable<Tienda[]> {
-    return this.http.get<Tienda[]>(this.url + 'tiendas/clientes' + id);
+  listarClientesTienda(id: number): Observable<any> {
+    return this.http.get<any>(this.url + 'tiendas/clientes/' + id);
   }
 
   //Metodo para listar proveedores por tienda
-  listarProveedoresTienda(id: number): Observable<Tienda[]> {
-    return this.http.get<Tienda[]>(this.url + 'tiendas/proveedores' + id);
+  listarProveedoresTienda(id: number): Observable<any> {
+    return this.http.get<any>(this.url + 'tiendas/proveedores/' + id);
   }
 
   //Metodo para listar productos por tienda
-  listarProductosTienda(id: number): Observable<Tienda[]> {
-    return this.http.get<Tienda[]>(this.url + 'tiendas/productos' + id);
+  listarProductosTienda(id: number): Observable<any> {
+    return this.http.get<any>(this.url + 'tiendas/productos/' + id);
   }
 
 
@@ -122,11 +122,11 @@ export class Servidor {
 
   //Colocamos el void por que en el backend no nos regresa un cuerpo
   eliminarClientes(id: number): Observable<HttpResponse<any>> {
-    return this.http.delete<void>(this.url + 'clientes/eliminar' + id, { observe: 'response' });
+    return this.http.delete<void>(this.url + 'clientes/eliminar/' + id, { observe: 'response' });
   }
 
   buscarClienteId(id: number): Observable<Cliente> {
-    return this.http.get<Cliente>(this.url + 'clientes' + id);
+    return this.http.get<Cliente>(this.url + 'clientes/buscar/' + id);
   }
 
   //METODOS PARA DEPARTAMENTOS--------------------------------------------------------------------------------
@@ -145,21 +145,21 @@ export class Servidor {
 
   //Colocamos el void por que en el backend no nos regresa un cuerpo
   eliminarDepartamentos(id: number): Observable<HttpResponse<any>> {
-    return this.http.delete<void>(this.url + 'departamento/eliminar' + id, { observe: 'response' });
+    return this.http.delete<void>(this.url + 'departamento/eliminar/' + id, { observe: 'response' });
   }
-
+ 
   buscarDepartamentoId(id: number): Observable<Departamento> {
-    return this.http.get<Departamento>(this.url + 'departamento/buscar' + id);
+    return this.http.get<Departamento>(this.url + 'departamento/buscar/' + id);
   }
 
   //Metodo para listar emplaeados por departamento
-  listarEmpleadosDepartamento(id: number): Observable<Departamento[]> {
-    return this.http.get<Departamento[]>(this.url + 'departamento/listarEmpleados' + id);
+  listarEmpleadosDepartamento(id: number): Observable<Empleado[]> {
+    return this.http.get<Empleado[]>(this.url + 'departamento/listarEmpleados/' + id);
   }
 
   //Metodo para listar productos por departamento
-  listarProductosDepartamento(id: number): Observable<Departamento[]> {
-    return this.http.get<Departamento[]>(this.url + 'departamento/listarProductos' + id);
+  listarProductosDepartamento(id: number): Observable<Producto[]> {
+    return this.http.get<Producto[]>(this.url + 'departamento/listarProductos/' + id);
   }
 
   //METODOS PARA EMPLEADOS--------------------------------------------------------------------------------
@@ -177,32 +177,32 @@ export class Servidor {
   }
 
   eliminarEmpleados(id: number): Observable<HttpResponse<any>> {
-    return this.http.delete<void>(this.url + 'empleados/eliminar' + id, { observe: 'response' });
+    return this.http.delete<void>(this.url + 'empleados/eliminar/' + id, { observe: 'response' });
   }
 
   buscarEmpleadoId(id: number): Observable<Empleado> {
-    return this.http.get<Empleado>(this.url + 'empleados/buscar' + id);
+    return this.http.get<Empleado>(this.url + 'empleados/buscar/' + id);
   }
 
   //METODOS PARA PROVEEDORES--------------------------------------------------------------------------------
-  listarProveedores(): Observable<Proveedores[]> {
-    return this.http.get<Proveedores[]>(this.url + 'proveedores/listar');
+  listarProveedores(): Observable<Proveedor[]> {
+    return this.http.get<Proveedor[]>(this.url + 'proveedores/listar');
   }
 
-  guardarProveedores(proveedor: Proveedores): Observable<any> {
-    return this.http.post<Proveedores>(this.url + 'proveedores/guardar', proveedor, { observe: 'response', responseType: 'json' });
+  guardarProveedores(proveedor: Proveedor):  Observable<HttpResponse<any>>{
+    return this.http.post<Proveedor>(this.url + 'proveedores/guardar', proveedor, { observe: 'response' });
   }
 
-  editarProveedores(proveedor: Proveedores): Observable<HttpResponse<Proveedores>> {
-    return this.http.patch<Proveedores>(this.url + 'proveedores/editar', proveedor, { observe: 'response' });
+  editarProveedores(proveedor: Proveedor): Observable<HttpResponse<Proveedor>> {
+    return this.http.patch<Proveedor>(this.url + 'proveedores/editar', proveedor, { observe: 'response' });
   }
 
   //Colocamos el void por que en el backend no nos regresa un cuerpo
   eliminarProveedores(id: number): Observable<HttpResponse<any>> {
-    return this.http.delete<void>(this.url + 'proveedores/eliminar' + id, { observe: 'response' });
+    return this.http.delete<void>(this.url + 'proveedores/eliminar/' + id, { observe: 'response' });
   }
 
-  buscarProveedorId(id: number): Observable<Proveedores> {
-    return this.http.get<Proveedores>(this.url + 'proveedores/buscar' + id);
+  buscarProveedorId(id: number): Observable<Proveedor> {
+    return this.http.get<Proveedor>(this.url + 'proveedores/buscar/' + id);
   }
 }

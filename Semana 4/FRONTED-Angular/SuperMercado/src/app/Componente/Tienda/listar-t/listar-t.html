@@ -27,8 +27,22 @@
                                 <td>{{tienda.tipo}}</td>
                                 <td>{{tienda.ciudad}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-success" (click)="btnEditar(tienda.idTienda)">EDITAR</button>
-                                    <button type="button" class="btn btn-danger" (click)="btnEliminar(tienda.idTienda)">ELIMINAR</button>
+                                    <div class="nav-item dropdown">
+                                        <button class="nav-link dropdown-toggle" type="button" (click)="toggleMenu('acciones-' + tienda.idTienda)">
+                                            Opciones
+                                        </button>
+                                        <div class="dropdown-menu" [class.show]="isMenuOpen('acciones-' + tienda.idTienda)">
+                                            <a class="dropdown-item" (click)="btnEditar(tienda.idTienda)">
+                                                <span class="icon">✏️</span> Editar
+                                            </a>
+                                            <a class="dropdown-item" (click)="btnEliminar(tienda.idTienda)">
+                                                <span class="icon">🗑️</span> Eliminar
+                                            </a>
+                                            <a class="dropdown-item" (click)="btnDetalles(tienda.idTienda)">
+                                                <span class="icon">👨‍💼</span> Detalles de Servicios
+                                            </a>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                             } @empty {

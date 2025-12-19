@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Servidor } from '../../../Servidor/servidor';
-import { Proveedores } from '../../../Entidad/proveedores';
+import { Proveedor } from '../../../Entidad/proveedor';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,8 +17,8 @@ export class ListarPR implements OnInit {
   constructor(private router: Router, private servicio: Servidor) {}
 
   //Creamos variables para almacenar los datos que vienen del servidor
-    proveedores!: Proveedores[];
-    proveedor = new Proveedores(); //Inicializamos un objeto tienda para usarlor
+    proveedores!: Proveedor[];
+    proveedor = new Proveedor(); //Inicializamos un objeto tienda para usarlor
   
     //Creamos el metodo ngOnInit para cargar los datos al inicializar el componente
     ngOnInit(): void{

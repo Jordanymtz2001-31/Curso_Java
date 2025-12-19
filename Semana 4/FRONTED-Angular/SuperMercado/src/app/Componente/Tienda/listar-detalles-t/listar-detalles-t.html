@@ -1,1 +1,265 @@
-<p>listar-detalles-t works!</p>
+<!--
+  Vista de detalles de una tienda.
+  Permite visualizar productos, empleados, clientes, proveedores y departamentos asociados a la tienda seleccionada.
+  Cada sección/tab muestra una tabla dinámica con los datos correspondientes.
+-->
+<div class="tienda-detail">
+    <!-- Encabezado con el ID de la tienda y las pestañas de navegación -->
+    <div class="card-header">
+        <h2>Tienda ID: {{ tiendaId }}</h2>
+        
+        <!--
+          TABS SIMPLES
+          Permiten cambiar entre las diferentes entidades relacionadas a la tienda.
+          Cada tab muestra la cantidad de elementos y activa la tabla correspondiente.
+        -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" [class.active]="activeTab === 'productos'" (click)="setTab('productos')">
+                    📦 Productos ({{ getCount('productos') }})
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [class.active]="activeTab === 'empleados'" (click)="setTab('empleados')">
+                    👥 Empleados ({{ getCount('empleados') }})
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [class.active]="activeTab === 'clientes'" (click)="setTab('clientes')">
+                    👤 Clientes ({{ getCount('clientes') }})
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [class.active]="activeTab === 'proveedores'" (click)="setTab('proveedores')">
+                    🏪 Proveedores ({{ getCount('proveedores') }})
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [class.active]="activeTab === 'departamentos'" (click)="setTab('departamentos')">
+                    🏢 Departamentos ({{ getCount('departamentos') }})
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!--
+      TABLA DINÁMICA
+      Muestra la tabla correspondiente según la pestaña activa.
+      Si loading es true, muestra un spinner de carga.
+      Si no hay datos, muestra un mensaje amigable.
+    -->
+    @if (loading) {
+    <div class="text-center p-5">
+      <div class="spinner-border"></div>
+      <p>Cargando {{ tipo }}...</p>
+    </div>
+  } @else {
+
+    <!--
+      TABLA DE PRODUCTOS
+      Se muestra si la pestaña activa es 'productos'.
+      Presenta los productos asociados a la tienda.
+    -->
+    @if (tipo === 'productos') {
+      <div class="table-responsive" *ngIf="productos.length > 0; else noProd">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Cantidad</th>
+              <th>Color</th>
+              <th>Precio</th>
+              <th>Departamento ID</th>
+              <th>Tienda ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (p of productos; track p.id) {
+              <tr>
+                <td>{{ p.id }}</td>
+                <td>{{ p.nombre }}</td>
+                <td>{{ p.cantidad }}</td>
+                <td>{{ p.color }}</td>
+                <td>{{ p.precio }}</td>
+                <td>{{ p.depaId }}</td>
+                <td>{{ p.tiendaId }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <ng-template #noProd>
+        <div class="text-center p-5">
+            {{ mensaje || 'No hay empleados en esta tienda' }}
+        </div>
+    </ng-template>
+    }
+
+    <!--
+      TABLA DE EMPLEADOS
+      Se muestra si la pestaña activa es 'empleados'.
+      Presenta los empleados asociados a la tienda.
+    -->
+    @if (tipo === 'empleados') {
+      <!-- tabla de empleados aquí -->
+       <div class="table-responsive" *ngIf="empleados.length > 0; else noEmp">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre completo</th>
+            <th>Puesto</th>
+            <th>Teléfono</th>
+            <th>Edad</th>
+            <th>Departamento ID</th>
+            <th>Tienda ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (e of empleados; track e.id) {
+            <tr>
+              <td>{{ e.id }}</td>
+              <td>{{ e.nombre }} {{ e.apellidoP }} {{ e.apellidoM }}</td>
+              <td>{{ e.telefono }}</td>
+              <td>{{ e.edad }}</td>
+              <td>{{ e.puesto }}</td>
+              <td>{{ e.departamentoId }}</td>
+              <td>{{ e.tiendaId }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <ng-template #noEmp>
+        <div class="text-center p-5">
+            {{ mensaje || 'No hay empleados en esta tienda' }}
+        </div>
+    </ng-template>
+    }
+
+    <!--
+      TABLA DE CLIENTES
+      Se muestra si la pestaña activa es 'clientes'.
+      Presenta los clientes asociados a la tienda.
+    -->
+    @if (tipo === 'clientes') {
+      <!-- tabla de clientes aquí -->
+       <div class="table-responsive" *ngIf="clientes.length > 0; else noCli">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Edad</th>
+            <th>Tienda ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (c of clientes; track c.id) {
+            <tr>
+              <td>{{ c.id }}</td>
+              <td>{{ c.nombre }} {{ c.apellidoP }} {{ c.apellidoM }}</td>
+              <td>{{ c.telefono }}</td>
+              <td>{{ c.edad}}</td>
+              <td>{{ c.tiendaId }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <ng-template #noCli>
+        <div class="text-center p-5">
+            {{ mensaje || 'No hay empleados en esta tienda' }}
+        </div>
+    </ng-template>
+    }
+
+    <!--
+      TABLA DE PROVEEDORES
+      Se muestra si la pestaña activa es 'proveedores'.
+      Presenta los proveedores asociados a la tienda.
+    -->
+    @if (tipo === 'proveedores') {
+      <!-- tabla de proveedores aquí -->
+       <div class="table-responsive" *ngIf="proveedores.length > 0; else noProv">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Responsable</th>
+            <th>Teléfono</th>
+            <th>Direccion</th>
+            <th>Email</th>
+            <th>Tienda Id</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of proveedores; track p.idProveedor) {
+            <tr>
+              <td>{{ p.idProveedor }}</td>
+              <td>{{ p.nombreProveedor }}</td>
+              <td>{{ p.tipo}}</td>
+              <td>{{ p.responsable}}</td>
+              <td>{{ p.telefono }}</td>
+              <td>{{ p.direccion}}</td>
+              <td>{{ p.email }}</td>
+              <td>{{ p.tiendaId}}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <ng-template #noProv>
+        <div class="text-center p-5">
+            {{ mensaje || 'No hay empleados en esta tienda' }}
+        </div>
+    </ng-template>
+    }
+
+    <!--
+      TABLA DE DEPARTAMENTOS
+      Se muestra si la pestaña activa es 'departamentos'.
+      Presenta los departamentos asociados a la tienda.
+    -->
+    @if (tipo === 'departamentos') {
+      <!-- tabla de departamentos aquí -->
+       <div class="table-responsive" *ngIf="departamentos.length > 0; else noDep">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Telefono</th>
+            <th>Email</th>
+            <th>ID Tienda</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (d of departamentos; track d.idDepartamento) {
+            <tr>
+              <td>{{ d.idDepartamento }}</td>
+              <td>{{ d.codigo}}</td>
+              <td>{{ d.nombre }}</td>
+              <td>{{ d.descripcion }}</td>
+              <td>{{ d.telefono}}</td>
+              <th>{{ d.email}}</th>
+              <th>{{ d.tiendaId}}</th>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <ng-template #noDep>
+        <div class="text-center p-5">
+            {{ mensaje || 'No hay empleados en esta tienda' }}
+        </div>
+    </ng-template>
+    }
+  }
+</div>

@@ -48,8 +48,7 @@ public class ProductoController {
 	        
 	        boolean existe = dao.existeProducto(producto.getNombre());
 	        if (existe) {
-	            return ResponseEntity.status(409)
-	                .body(Map.of("error", "El producto ya existe"));
+	            return ResponseEntity.status(409).body(Map.of("error", "El producto ya existe"));
 	        }
 	        
 	        dao.guardar(producto);
