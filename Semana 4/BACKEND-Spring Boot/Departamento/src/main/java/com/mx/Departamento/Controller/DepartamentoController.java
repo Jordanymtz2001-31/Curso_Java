@@ -89,7 +89,7 @@ public class DepartamentoController {
 			return ResponseEntity.ok(dep);
 			}else {
 				return ResponseEntity.ok("El departamento no existe");
-			}
+			} 
 	}
 	
 	//Metodo para lista de departamentos por tienda

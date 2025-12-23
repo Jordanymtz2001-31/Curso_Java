@@ -16,7 +16,7 @@ import com.mx.Tienda.Dtos.EmpleadoDto;
 import com.mx.Tienda.Dtos.ProductoDto;
 import com.mx.Tienda.Dtos.ProveedorDto;
 import com.mx.Tienda.Entity.Tienda;
-import com.mx.Tienda.FeingConfig.ClientesFeingClient;
+import com.mx.Tienda.FeingConfig.ClientesFeignClient;
 import com.mx.Tienda.FeingConfig.DepartamentoFeingClient;
 import com.mx.Tienda.FeingConfig.EmpleadoFeingClient;
 import com.mx.Tienda.FeingConfig.ProductoFeingClient;
@@ -135,7 +135,7 @@ public class TiendaService {
 	private ProveedorFeingClient proveedorFC;
 	
 	@Autowired //Inyeccion de dependencias
-	private ClientesFeingClient clienteFC;
+	private ClientesFeignClient clienteFC;
 	
 	@Autowired //Inyeccion de dependencias
 	private ProductoFeingClient productoFC;
@@ -144,7 +144,7 @@ public class TiendaService {
 	public List<DepartamentoDto> listarDepartamenXTienda(int tiendaId){
 		return depaFC.listarPorTienda(tiendaId);
 	}
-	
+	 
 	//Metodo para listar Empleados por tienda
 	public List<EmpleadoDto> listarEmpleadosXTienda(int tiendaId){
 		return empleadoFC.ListarPorTiendaId(tiendaId);
