@@ -15,14 +15,14 @@ export class EditarD implements OnInit{
   // Creamos el constructor que inyecta el servicio Servidor
   constructor(private servicio: Servidor, private router: Router, private route: ActivatedRoute) { }
 
-  // Creamos la instancia de la entidad Clientes
-  departamento: Departamento = new Departamento(); //Intanciamos con Tienda
+  // Creamos la instancia de la entidad 
+  departamento: Departamento = new Departamento(); //Intanciamos con Departamentos
   loading = true; //Variable para indicar que si esta cargando
   error = '';
 
   ngOnInit(): void {
     
-    //Obtenerl El iD de la tienda desde la ruta
+    //Obtenerl El iD del Departamentos desde la ruta
     this.route.params.subscribe(params =>{
       const id = +params['id']; // El + convierte string a number
       if (id) {

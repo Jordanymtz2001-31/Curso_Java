@@ -16,36 +16,33 @@ export class GuardarD implements OnInit{
   //Creamos un contructor para inicializar con sus inyecciones
   constructor (private router:Router, private service: Servidor) {}
 
-  Departamento: Departamento = new Departamento() //Intancia de Departamento
-  departamentos: Departamento[] = [] //Creamos una lista para almacenar los departamentos
+  departamento: Departamento = new Departamento() //Intancia de Departamento
 
-    //Metodo de OnInit
-    ngOnInit(): void {
-      
-    }
+  //Metodo de OnInit
+  ngOnInit(): void {
+
+  }
   
-    //Boton de Guardar
-    btnGuardardDepartamento(): void{
-      this.service.guardarDepartamentos(this.Departamento).subscribe({
-        next: (response: any) =>{
+  //Boton de Guardar
+  btnGuardardDepartamento(): void{
+    this.service.guardarDepartamentos(this.departamento).subscribe({
+      next: (response: any) =>{
+      Swal.fire({
+        title: 'Guardado...✓',
+        text: response.body.message || 'Departamento guardada con éxito',
+        icon: 'success',
+        showConfirmButton: false
+      }),
+        this.router.navigate(['listar-departamentos']); //Navegamos a la lista de departamentos despues de guardar
+      },
+      error: (err) => {
         Swal.fire({
-          title: 'Guardado...✓',
-          text: response.body.message || 'Departamento guardada con éxito',
-          icon: 'success',
-          showConfirmButton: false
-        }),
-          this.router.navigate(['listar-departamentos']); //Navegamos a la lista de departamentos despues de guardar
-        },
-        error: (err) => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: err.error?.error || 'Error desconocido', //Mostramos el error del backend
-            confirmButtonText: 'Aceptar'
-          });
-        }
-      });
+          icon: 'error',
+          title: 'Error',
+          text: err.error?.error || 'Error desconocido', //Mostramos el error del backend
+          confirmButtonText: 'Aceptar'
+        });
       }
-
-
+    });
+  }
 }
