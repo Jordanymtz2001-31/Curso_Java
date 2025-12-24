@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -61,7 +62,7 @@ public class ResponsableController {
 	}
 	
 	
-	@PatchMapping("/editar")
+	@PutMapping("/editar")
 	public ResponseEntity<Map<String, String>> Editar(@RequestBody Responsable responsable){
 		
 		Map<String, String> response = new HashMap<>(); //Crea un mapa para la respuesta
@@ -87,9 +88,19 @@ public class ResponsableController {
 		
 	}
 	
-	@GetMapping("/buscar/{nombre}") //PERZONALIZADO
+	@GetMapping("/buscarNombre/{nombre}") //PERZONALIZADO
 	public ResponseEntity<?> Buscar(@PathVariable String nombre){
 		Responsable responsable = service.buscar(nombre);
+		if(responsable == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El responsable no existe");
+		}else {
+			return ResponseEntity.ok(responsable);
+		}
+	}
+	
+	@GetMapping("/buscarId/{idResponsable}") //PERZONALIZADO
+	public ResponseEntity<?> Buscar(@PathVariable Integer idResponsable){
+		Responsable responsable = service.buscarId(idResponsable);
 		if(responsable == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El responsable no existe");
 		}else {

@@ -1,0 +1,34 @@
+    <div class="guardar-cliente-container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Nuevo Cliente</h1>
+                <p class="subtitle">Completa el formulario para registrar un nuevo Cliente</p>
+            </div>
+            
+            <form class="cliente-form">
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre"  [(ngModel)]="cliente.nombre" required placeholder="Ingresa el nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion">Direccion</label>
+                        <input type="text" id="direccion" name="direccion" [(ngModel)]="cliente.direccion" required placeholder="Ingresa la direccion">
+                    </div>
+                </div>
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label for="telefono">Contacto</label>
+                        <input type="number" id="telefono"name="telefono"  [(ngModel)]="cliente.contacto" required placeholder="Ej: 1234567890">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" (click)="btnGuardardCliente()">
+                        <span>✓ Guardar Cliente</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+

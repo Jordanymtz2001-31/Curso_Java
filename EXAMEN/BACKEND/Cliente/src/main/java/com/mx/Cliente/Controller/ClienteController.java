@@ -92,9 +92,19 @@ public class ClienteController {
 		
 	}
 	
-	@GetMapping("/buscar/{nombre}") //PERZONALIZADO------------------------------
+	@GetMapping("/buscarNombre/{nombre}") //PERZONALIZADO------------------------------
 	public ResponseEntity<?> Buscar(@PathVariable String nombre){
 		Cliente cliente = service.buscar(nombre);
+		if(cliente == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El cliente no existe");
+		}else {
+			return ResponseEntity.ok(cliente);
+		}
+	}
+	
+	@GetMapping("/buscarId/{idCliente}") //PERZONALIZADO------------------------------
+	public ResponseEntity<?> Buscar(@PathVariable Integer idCliente){
+		Cliente cliente = service.buscarId(idCliente);
 		if(cliente == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El cliente no existe");
 		}else {

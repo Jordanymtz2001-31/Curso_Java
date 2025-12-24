@@ -1,0 +1,86 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <!-- Logo/Título -->
+    <div class="navbar-brand">
+      <h1>🏥 Veterinaria</h1>
+    </div>
+
+    <!-- Menú Principal -->
+    <ul class="nav-menu" >
+      <!-- VETERINARIAS -->
+      <li class="nav-item dropdown">
+        <button class="nav-link dropdown-toggle" (click)="toggleMenu('veterinarias')">
+          <span class="icon">🏪</span> Veterinaria
+          <span class="arrow" [class.active]="isMenuOpen('veterinarias')">▼</span>
+        </button>
+        <div class="dropdown-menu" [class.show]="isMenuOpen('veterinarias')">
+          <a class="dropdown-item" (click)="listarVeterinarias()">
+            <span>📋</span> Listar
+          </a>
+          <a class="dropdown-item" (click)="guardarVeterinaria()">
+            <span>➕</span> Guardar
+          </a>
+          <a class="dropdown-item" (click)="detalleVeterinaria()">
+            <span>🔍</span> Ver Detalles
+          </a>
+        </div>
+      </li>
+      <!-- CLIENTES -->
+      <li class="nav-item dropdown">
+        <button class="nav-link dropdown-toggle" (click)="toggleMenu('clientes')">
+          <span class="icon">👤</span> Clientes
+          <span class="arrow" [class.active]="isMenuOpen('clientes')">▼</span>
+        </button>
+        <div class="dropdown-menu" [class.show]="isMenuOpen('clientes')">
+          <a class="dropdown-item" (click)="listarCliente()">
+            <span>📋</span> Listar
+          </a>
+          <a class="dropdown-item" (click)="guardarCliente()">
+            <span>➕</span> Guardar
+          </a>
+          <a class="dropdown-item" (click)="detalleVeterinaria()">
+            <span>🔍</span> Ver Detalles
+          </a>
+        </div>
+      </li>
+
+      <!-- RESPONSABLE -->
+      <li class="nav-item dropdown">
+        <button class="nav-link dropdown-toggle" (click)="toggleMenu('responsables')">
+          <span class="icon">🧑‍⚕️</span> Responsables
+          <span class="arrow" [class.active]="isMenuOpen('responsables')">▼</span>
+        </button>
+        <div class="dropdown-menu" [class.show]="isMenuOpen('responsables')">
+          <a class="dropdown-item" (click)="listarResponsables()">
+            <span>📋</span> Listar
+          </a>
+          <a class="dropdown-item" (click)="guardarResponsable()">
+            <span>➕</span> Guardar
+          </a>
+          <a class="dropdown-item" (click)="detalleVeterinaria()">
+            <span>🔍</span> Ver Detalles
+          </a>
+        </div>
+      </li>
+
+      <!-- MASCOTA -->
+      <li class="nav-item dropdown">
+        <button class="nav-link dropdown-toggle" (click)="toggleMenu('mascotas')">
+          <span class="icon">🐈</span> Mascotas
+          <span class="arrow" [class.active]="isMenuOpen('mascotas')">▼</span>
+        </button>
+        <div class="dropdown-menu" [class.show]="isMenuOpen('mascotas')">
+          <a class="dropdown-item" (click)="listarMascotas()">
+            <span>📋</span> Listar
+          </a>
+          <a class="dropdown-item" (click)="guardarMascota()">
+            <span>➕</span> Guardar
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<router-outlet />

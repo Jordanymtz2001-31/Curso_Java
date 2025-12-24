@@ -1,0 +1,35 @@
+    <div class="guardar-cliente-container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Nuevo Responsable</h1>
+                <p class="subtitle">Completa el formulario para registrar un nuevo Responsable</p>
+            </div>
+            
+            <form class="cliente-form">
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre"  [(ngModel)]="responsable.nombre" required placeholder="Ingresa el nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="contacto">Contacto</label>
+                        <input type="text" id="contacto" name="contacto" [(ngModel)]="responsable.contacto" required placeholder="Ej: 1234567890">
+                    </div>
+                </div>
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label for="veterinariaId">Veterinaria ID</label>
+                        <input type="number" id="veterinariaId"name="veterinariaId"  [(ngModel)]="responsable.veterinariaId" required placeholder="Ingresa la Veterinaria">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" (click)="btnGuardardResponsable()">
+                        <span>✓ Guardar Responsable</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+

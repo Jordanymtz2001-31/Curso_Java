@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,7 +52,7 @@ public class MascotaController {
 		}
 	}
 	
-	@PatchMapping("/editar")
+	@PutMapping("/editar")
 	public ResponseEntity<Map<String, String>> Editar(@RequestBody Mascota mascota){
 		Map<String, String> response = new HashMap<>();
 		Mascota mascotaexiste = service.buscarId(mascota.getIdMascota());
@@ -84,8 +85,20 @@ public class MascotaController {
 		}
 	}
 	
+	@GetMapping("/buscarId/{idMascota}")
+	public ResponseEntity<?> BuscarMascota(@PathVariable int idMascota){
+		Mascota mascota = service.buscarId(idMascota);
+		if(mascota == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("La Mascota no existe");
+		}else {
+			return ResponseEntity.ok(mascota);
+		}
+	}
+	
+	
 	//METODOS PERSONALIZADOS-------------------------------------------------------------------------
-	@GetMapping("/buscar/{nombre}")
+	
+	@GetMapping("/buscarNombre/{nombre}")
 	public ResponseEntity<?> BuscarMascota(@PathVariable String nombre){
 		Mascota mascota = service.buscar(nombre);
 		if(mascota == null) {

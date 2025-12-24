@@ -90,9 +90,19 @@ public class VeterinariaController {
 		
 	}
 	
-	@GetMapping("/buscar/{nombre}") //PERZONALIZADO
+	@GetMapping("/buscarNombre/{nombre}") //PERZONALIZADO
 	public ResponseEntity<?> Buscar(@PathVariable String nombre){
 		Veterinaria veterinaria = service.buscar(nombre);
+		if(veterinaria == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("La Veterinaria no existe");
+		}else {
+			return ResponseEntity.ok(veterinaria);
+		}
+	}
+	
+	@GetMapping("/buscarId/{idVeterinaria}") //PERZONALIZADO
+	public ResponseEntity<?> Buscar(@PathVariable Integer idVeterinaria){
+		Veterinaria veterinaria = service.buscarId(idVeterinaria);
 		if(veterinaria == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("La Veterinaria no existe");
 		}else {
@@ -114,7 +124,7 @@ public class VeterinariaController {
 	//METODOS DEL OTROS MICROSERVICIOS USANDO FEIGN CLIENT---------------------------------------------------------
 	
 	//Metodo para listar mascotas por veterinaria
-	@GetMapping("/mascotas/{veterinariaId}")
+	@GetMapping("/mascotasList/{veterinariaId}")
 	public ResponseEntity<?> listarMascotasXVeterinaria(@PathVariable int veterinariaId) {
 		try {//Validar si la tienda existe
 			if(service.buscarId(veterinariaId) == null) {
@@ -133,7 +143,7 @@ public class VeterinariaController {
 	}
 	
 	//Metodo para listar responsable por veterinaria
-	@GetMapping("/responsables/{veterinariaId}")
+	@GetMapping("/responsablesList/{veterinariaId}")
 	public ResponseEntity<?> listarResponsablesXVeterinaria(@PathVariable int veterinariaId) {
 		try {//Validar si la tienda existe
 			if(service.buscarId(veterinariaId) == null) {

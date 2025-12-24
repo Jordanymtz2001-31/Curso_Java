@@ -1,0 +1,49 @@
+    <div class="guardar-cliente-container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Nueva Mascota</h1>
+                <p class="subtitle">Completa el formulario para registrar una Nuvea Mascota</p>
+            </div>
+            <form class="cliente-form">
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre"  [(ngModel)]="mascota.nombre" required placeholder="Ingresa el nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="raza">Raza</label>
+                        <input type="text" id="raza" name="raza" [(ngModel)]="mascota.raza" required placeholder="Ingresa la raza">
+                    </div>
+                    <div class="form-group">
+                        <label for="edad">Edad</label>
+                        <input type="number" id="edad"name="edad"  [(ngModel)]="mascota.edad" required placeholder="Ingresa la edad">
+                    </div>
+                    <div class="form-group">
+                        <label for="razon">Razon de la Cita</label>
+                        <input type="text" id="razon"name="razon"  [(ngModel)]="mascota.razonCita" required placeholder="Ingresa la razon por la cita">
+                    </div>
+                </div>
+                <div class="form-row form-row-two">
+                    <div class="form-group">
+                        <label for="clienteId">Cliente ID</label>
+                        <input type="number" id="clienteId"name="clienteId"  [(ngModel)]="mascota.clienteId" required placeholder="Ingresa El ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="responsableId">Responsable ID</label>
+                        <input type="number" id="responsableId"name="responsableId"  [(ngModel)]="mascota.responsableId" required placeholder="Ingresa El ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="veterinariaId">Veterinaria ID</label>
+                        <input type="number" id="veterinariaId"name="veterinariaId"  [(ngModel)]="mascota.veterinariaId" required placeholder="Ingresa El ID">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" (click)="btnGuardardMascota()">
+                        <span>✓ Guardar Cliente</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
